@@ -1,36 +1,127 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ar" dir="rtl">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>@yield('title', 'متجر ترياق - المنتجات الطبيعية')</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+            
+            :root {
+                --primary-color: #2E8B57;
+                --secondary-color: #98FB98;
+                --accent-color: #006400;
+            }
+            
+            body {
+                font-family: 'Tajawal', sans-serif;
+                background-color: #F0FFF0;
+            }
+            
+            .navbar {
+                background-color: var(--primary-color);
+            }
+            
+            .navbar-brand {
+                font-size: 2rem;
+                font-weight: bold;
+                color: white !important;
+            }
+            
+            .nav-link {
+                color: white !important;
+                font-weight: 500;
+            }
+            
+            .card {
+                transition: transform 0.2s, box-shadow 0.2s;
+                border: none;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+            
+            .footer {
+                background-color: var(--primary-color);
+                color: white;
+            }
+        </style>
+        @yield('styles')
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    <body>
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('shop.index') }}">
+                    <i class="fas fa-leaf me-2"></i>متجر ترياق
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('shop.index') }}">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('products*') ? 'active' : '' }}" href="{{ route('shop.index') }}">المنتجات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">اتصل بنا</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="{{ route('shop.search') }}" method="GET">
+                        <input class="form-control me-2" type="search" name="query" placeholder="ابحث عن منتج" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">بحث</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+        <!-- Main Content -->
+        <main class="container mt-5">
+            @yield('content')
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer mt-5 py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5><i class="fas fa-leaf me-2"></i>متجر ترياق</h5>
+                        <p>نقدم أفضل المنتجات الطبيعية والعشبية لصحتك ورفاهيتك.</p>
                     </div>
-                </header>
-            @endisset
+                    <div class="col-md-4">
+                        <h5>روابط سريعة</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('shop.index') }}" class="text-white">الرئيسية</a></li>
+                            <li><a href="{{ route('shop.index') }}" class="text-white">المنتجات</a></li>
+                            <li><a href="#" class="text-white">من نحن</a></li>
+                            <li><a href="#" class="text-white">اتصل بنا</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>تواصل معنا</h5>
+                        <p><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
+                        <p><i class="fas fa-phone me-2"></i>+20 123 456 7890</p>
+                    </div>
+                </div>
+                <hr class="bg-white">
+                <div class="text-center">
+                    <p>&copy; 2023 متجر ترياق. جميع الحقوق محفوظة.</p>
+                </div>
+            </div>
+        </footer>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        @yield('scripts')
     </body>
 </html>
