@@ -120,6 +120,24 @@
                                     @endforelse
                                 </div>
                             </div>
+                            @foreach(['image-1', 'image-2', 'image-3', 'image-4', 'image-5'] as $imageField)
+                            <h2> تعديل الصور </h2>
+                                <div class="mb-3">
+                                    <label for="{{ $imageField }}" class="form-label">{{ __("الصورة " . substr($imageField, -1)) }}</label>
+                                    <input type="file" class="form-control" name="{{ $imageField }}" id="{{ $imageField }}" accept="image/*">
+                                    @if($product->{$imageField})
+                                        <div class="mt-2">
+                                            <img src="{{ asset('storage/' . $product->{$imageField}) }}" alt="الصورة الحالية" class="img-thumbnail" width="100">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remove_{{ $imageField }}" id="remove_{{ $imageField }}">
+                                                <label class="form-check-label" for="remove_{{ $imageField }}">
+                                                    إزالة هذه الصورة
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-warning btn-lg">
                                     <i class="fas fa-save me-2"></i>تحديث المنتج

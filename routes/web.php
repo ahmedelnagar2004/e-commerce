@@ -8,14 +8,12 @@ use  App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\Admin\OrderStatusController as AdminOrderStatusController;
+use  App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/sizeshart', [HomeController::class, 'sizeshart'])->name('sizeshart');
+Route::get('/social-media', [HomeController::class, 'socialMedia'])->name('socialmedia');
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,4 +44,3 @@ Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show'
 Route::post('/orders/{id}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
-

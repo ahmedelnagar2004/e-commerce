@@ -80,16 +80,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">الرئيسية</a>
+                        <a href="{{ route('products.create') }}" class="btn btn-success">
+                            <i class="fas fa-plus"></i> إضافة منتج جديد
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">المنتجات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">من نحن</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">اتصل بنا</a>
+                        <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> الطلبات
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -98,15 +96,6 @@
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-primary">منتجاتنا الطبيعية</h1>
-            <a href="{{ route('products.create') }}" class="btn btn-success">
-                <i class="fas fa-plus"></i> إضافة منتج جديد
-            </a>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">
-                <i class="fas fa-shopping-cart"></i> الطلبات
-            </a>
-        </div>
         
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($products as $product)

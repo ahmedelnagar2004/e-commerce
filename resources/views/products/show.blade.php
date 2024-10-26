@@ -63,6 +63,7 @@
                                 <div class="col-md-6">
                                     <h4 class="mb-3">تفاصيل المنتج</h4>
                                     <p><strong>السعر:</strong> {{ number_format($product->price, 2) }} ج.م</p>
+                                    <p><strong>السعر بعد الخصم:</strong> {{ number_format($product->discount_price, 2) }} ج.م</p>
                                     <p><strong>المخزون:</strong> {{ $product->stock }}</p>
                                     <p><strong>الوصف:</strong></p>
                                     <p>{{ $product->description }}</p>

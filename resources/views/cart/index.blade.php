@@ -22,11 +22,11 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $details['name'] }}</h5>
                                     <p class="card-text">المقاس: {{ $details['size'] }}</p>
+                                    <p class="card-text">الكمية: {{ $details['quantity'] }}</p>
                                     <p class="card-text">السعر: {{ number_format($details['price'], 2) }} ج.م</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                       
-                                        <button class="btn btn-danger remove-from-cart">
-                                            <i class="fas fa-trash"></i> حذف
+                                        <button class="btn btn-outline-danger remove-from-cart">
+                                            <i class="fas fa-trash-alt me-2"></i> إزالة
                                         </button>
                                     </div>
                                 </div>
@@ -39,7 +39,15 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">ملخص الطلب</h5>
-                        <p class="card-text">الإجمالي الكلي: <strong>{{ number_format(array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cartItems)), 2) }} ج.م</strong></p>
+                        @php
+                            $subtotal = array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cartItems));
+                            $shipping = 100;
+                            $total = $subtotal + $shipping;
+                        @endphp
+                        <p class="card-text">إجمالي المنتجات: <strong>{{ number_format($subtotal, 2) }} ج.م</strong></p>
+                        <p class="card-text">رسوم التوصيل: <strong>{{ number_format($shipping, 2) }} ج.م</strong></p>
+                        <hr>
+                        <p class="card-text"><b>المجموع الكلي: <strong>{{ number_format($total, 2) }} ج.م</strong></b></p>
                         <a href="{{ route('shop.index') }}" class="btn btn-primary w-100 mb-2">
                             <i class="fas fa-shopping-bag me-2"></i>متابعة التسوق
                         </a>
@@ -118,10 +126,52 @@
 
         <h3 class="mt-4"><i class="fas fa-shield-alt"></i> السياسة</h3>
         <ul>
-            <li>تحقق من أن الطلب يناسبك جيدًا قبل الدفع. إذا لم يكن كذلك، يرجى إرجاعه مع ساعي البريد في الموقع ودفع رسوم الشحن فقط. لا توجد مرتجعات بعد دفع ثمن طلبك، فقط التبادل خلال 14 يومًا من يوم الشراء. ملاحظة: العملاء مسؤولون عن أي تكاليف إضافية.</li>
+            <li>تحق من أن الطلب يناسبك جيدًا قبل الدفع. إذا لم يكن كذلك، يرجى إرجاعه مع ساعي البريد في الموقع ودفع رسوم الشحن فقط. لا توجد مرتجعات بعد دفع ثمن طلبك، فقط التبادل خلال 14 يومًا من يوم الشراء. ملاحظة: العملاء مسؤولون عن أي تكاليف إضافية.</li>
             <li><strong>سياسة الاسترجاع :</strong> بمجرد مغادرة ساعي البريد، لا يوجد تبادل أو استرداد</li>
             <li><strong>لا توجد مرتجعات أو تبادلات على العناصر المخفضة:</strong> المنتجات المشتراة بأسعار مخفضة لا يمكن إرجاعها أو تبادلها. يمكنك تجربة العنصر أثناء انتظار ساعي البريد، ولكن بمجرد مغادرتهم، لن يكون هناك تبادل أو استرداد متاح.</li>
         </ul>
+    </div>
+</div>
+
+<!-- Modal for Delete Confirmation -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">تأكيد الحذف</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+                <p class="mt-3">هل أنت متأكد أنك تريد حذف هذا المنتج من العربة؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">تأكيد الحذف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Order Confirmation -->
+<div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="orderConfirmationModalLabel">تم تأكيد الطلب</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                <h4 class="mt-3">تم إنشاء طلبك بنجاح!</h4>
+                <p class="lead">رقم الطلب: <strong id="orderNumber"></strong></p>
+                <p>سيتم معالجة طلبك في أقرب وقت ممكن. شكراً لتسوقك معنا!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                <a href="{{ route('shop.index') }}" class="btn btn-primary">متابعة التسوق</a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -155,6 +205,46 @@
     .shipping-policy ul {
         padding-left: 20px;
     }
+
+    #orderConfirmationModal .modal-content {
+        border: none;
+        border-radius: 15px;
+    }
+
+    #orderConfirmationModal .modal-header {
+        border-radius: 15px 15px 0 0;
+    }
+
+    #orderConfirmationModal .btn {
+        border-radius: 25px;
+        padding: 10px 20px;
+    }
+
+    #orderConfirmationModal .fa-check-circle {
+        color: #28a745;
+    }
+
+    .btn-outline-danger.remove-from-cart {
+        border-radius: 20px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-danger.remove-from-cart:hover {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(1, 1, 1, 0.3);
+    }
+
+    .btn-outline-danger.remove-from-cart .fas {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-outline-danger.remove-from-cart:hover .fas {
+        transform: rotate(20deg);
+    }
 </style>
 @endsection
 
@@ -162,16 +252,17 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    // الكود السابق للحذف وتحديث الملخص
+    let productToDelete = null;
 
-    // إضافة معالج حدث النقر لزر الحذف
     $(".remove-from-cart").click(function (e) {
         e.preventDefault();
+        productToDelete = $(this).closest(".card");
+        $('#deleteConfirmationModal').modal('show');
+    });
 
-        var ele = $(this);
-        var productId = ele.closest(".card").data("id");
-
-        if(confirm("هل أنت متأكد أنك تريد حذف هذا المنتج من العربة؟")) {
+    $("#confirmDelete").click(function() {
+        if (productToDelete) {
+            let productId = productToDelete.data("id");
             $.ajax({
                 url: '{{ route('cart.remove') }}',
                 method: "DELETE",
@@ -180,8 +271,9 @@ $(document).ready(function() {
                     id: productId
                 },
                 success: function (response) {
-                    ele.closest(".card").remove();
+                    productToDelete.remove();
                     updateCartSummary();
+                    $('#deleteConfirmationModal').modal('hide');
                     
                     // إذا كانت العربة فارغة، قم بتحديث الصفحة
                     if($(".card").length === 0) {
@@ -190,7 +282,7 @@ $(document).ready(function() {
                 },
                 error: function (xhr) {
                     console.log(xhr.responseText);
-                    alert("حدث طأ أثناء حذف المنتج. الرجاء المحاولة مرة أخرى.");
+                    alert("حدث خطأ أثناء حذف المنتج. الرجاء المحاولة مرة أخرى.");
                 }
             });
         }
@@ -202,6 +294,7 @@ $(document).ready(function() {
             url: '{{ route('cart.summary') }}',
             method: 'GET',
             success: function(response) {
+                
                 $(".card-text:contains('الإجمالي الكلي')").html('الإجمالي الكلي: <strong>' + response.total + ' ج.م</strong>');
             }
         });
@@ -219,8 +312,19 @@ $(document).ready(function() {
             data: formData,
             success: function(response) {
                 if(response.success) {
-                    alert('تم إنشاء الطلب بنجاح. رقم الطلب: ' + response.order_id);
-                    // يمكنك هنا إعادة توجيه المستخدم أو تحديث الصفحة
+                    // عرض النافذة المنبثقة الجديدة
+                    $('#orderNumber').text(response.order_id);
+                    $('#orderConfirmationModal').modal('show');
+                    
+                    // إفراغ العربة (اختياري)
+                    // $.ajax({
+                    //     url: '{{ route('cart.clear') }}',
+                    //     method: 'POST',
+                    //     data: {_token: '{{ csrf_token() }}'},
+                    //     success: function() {
+                    //         console.log('تم إفراغ العربة');
+                    //     }
+                    // });
                 } else {
                     alert('حدث خطأ: ' + response.message);
                 }
@@ -229,6 +333,11 @@ $(document).ready(function() {
                 alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
             }
         });
+    });
+
+    // إغلاق النافذة المنبثقة وإعادة التوجيه عند النقر على "متابعة التسوق"
+    $('#orderConfirmationModal').on('hidden.bs.modal', function () {
+        window.location.href = '{{ route('shop.index') }}';
     });
 });
 </script>

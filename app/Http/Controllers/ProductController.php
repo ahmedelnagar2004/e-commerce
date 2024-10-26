@@ -92,10 +92,46 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        $sizes = $request->input('sizes');
-        return redirect()->route('products.index')->with('success', 'Product updated successfully');
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required',
+            'stock' => 'required|integer|min:0',
+            'image-1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-5' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'sizes' => 'array',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->fill($validatedData);
+
+        // تحديث الصور
+        for ($i = 1; $i <= 5; $i++) {
+            $imageField = "image-$i";
+            if ($request->hasFile($imageField)) {
+                // حذف الصورة القديمة إذا وجدت
+                if ($product->{$imageField}) {
+                    \Storage::disk('public')->delete($product->{$imageField});
+                }
+                $imagePath = $request->file($imageField)->store('products', 'public');
+                $product->{$imageField} = $imagePath;
+            }
+        }
+
+        $product->save();
+
+        // تحديث المقاسات
+        $product->sizes()->delete(); // حذف المقاسات القديمة
+        if ($request->has('sizes')) {
+            foreach ($request->sizes as $size) {
+                $product->sizes()->create(['size' => $size]);
+            }
+        }
+
+        return redirect()->route('products.index')->with('success', 'تم تحديث المنتج بنجاح');
     }
 
     /**
