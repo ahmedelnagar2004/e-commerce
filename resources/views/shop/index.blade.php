@@ -16,9 +16,8 @@
                     </div>
                     <div class="card-body text-center">
                         <h5 class="card-title product-name">{{ $product->name }}</h5>
-                        <p class="card-text original-price"><del>1000 ج.م</del></p>
-
                         <p class="card-text fw-bold">{{ number_format($product->price, 2) }} ج.م</p>
+                        <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} ج.م</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +93,8 @@
     }
     .discounted-price {
         text-decoration: line-through;
-        color: red;
+        color: #999; /* لون رمادي خفيف */
+        font-size: 0.9em; /* حجم خط أصغر قليلاً */
     }
 
     .card-img-wrapper {

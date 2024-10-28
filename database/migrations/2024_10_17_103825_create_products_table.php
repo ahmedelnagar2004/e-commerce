@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name');
             $table->integer('price');
+            $table->integer('discount_price');
             $table->integer('stock');
             $table->text('description');
             $table->string('image-1');

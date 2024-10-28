@@ -14,9 +14,10 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'description',
         'price',
+        'discount_price', // تم تغيير الشرطة
         'stock',
+        'description',
         'image-1',
         'image-2',
         'image-3',

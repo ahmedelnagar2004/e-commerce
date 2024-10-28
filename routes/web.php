@@ -27,7 +27,7 @@ Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 Route::get('/shop/{product}/buy', [ShopController::class, 'buy'])->name('shop.buy');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::delete('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/summary', [CartController::class, 'summary'])->name('cart.summary');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');

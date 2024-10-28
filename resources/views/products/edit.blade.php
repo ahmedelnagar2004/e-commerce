@@ -90,6 +90,13 @@
                                 </div>
                             </div>
                             <div class="mb-3">
+                                <label for="discount-price" class="form-label"> السعر قبل التخفيض </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">ج.م</span>
+                                    <input type="number" class="form-control" name="discount-price" id="discount-price" step="0.01" value="{{ $product->discount_price }}" required>
+                                </div>
+                             </div>
+                            <div class="mb-3">
                                 <label for="description" class="form-label">الوصف</label>
                                 <textarea class="form-control" name="description" id="description" rows="3" required>{{ $product->description }}</textarea>
                             </div>

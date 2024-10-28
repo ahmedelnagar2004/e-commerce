@@ -74,6 +74,10 @@
                                 </div>
                             </div>
                             <div class="mb-3">
+                                <label for="discount_price" class="form-label">السعر قبل الخصم</label>
+                                <input type="number" step="0.01" class="form-control" id="discount_price" name="discount_price" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="description" class="form-label">الوصف</label>
                                 <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
                             </div>

@@ -71,7 +71,7 @@
     }
     .discounted-price {
     text-decoration: line-through;
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 </style>
@@ -99,11 +99,10 @@
             </div>
             <div class="col-md-6">
                <b> <h1 class="mb-4">{{ $product->name }}</h1></b>
-                <b><p class="mb-4">{{ $product->description }}</p></b>
-               <b><span style="text-decoration: line-through; color: #b0b0b0;">1000 ج.م</span>
-               </b>
+                <b><p class="mb-4">{{ $product->description }}</p></b></b>
 
                     <p class="fw-bold fs-4 mb-4">السعر: {{ number_format($product->price, 2) }} ج.م</p> 
+                    <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} ج.م</p>
                 <form action="{{ route('cart.add') }}" method="POST">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">

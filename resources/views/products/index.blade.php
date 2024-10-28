@@ -104,7 +104,8 @@
                         <img src="{{ asset('/storage/' . $product->{'image-1'}) }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="card-text">السعر: {{ number_format($product->price, 2) }} ج.م</p>
+                            <p class="card-text">السعر قبل التخفيض: {{ number_format($product->{'discount_price'}, 2) }} ج.م</p>
+                            <p class="card-text">السعر بعد التخفيض: {{ number_format($product->price, 2) }} ج.م</p>
                             <p class="card-text">المخزون: {{ $product->stock }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-top-0">

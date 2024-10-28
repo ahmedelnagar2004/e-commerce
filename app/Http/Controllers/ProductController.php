@@ -32,10 +32,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'description' => 'required',
+            'discount_price' => 'required|numeric|min:0', // تم تغيير الشرطة
             'stock' => 'required|integer|min:0',
+            'description' => 'required|string',
             'image-1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -133,10 +134,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'تم تحديث المنتج بنجاح');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         $product = Product::find($id);
@@ -144,4 +142,6 @@ class ProductController extends Controller
         size::where('product_id', $id)->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
+
+    
 }
