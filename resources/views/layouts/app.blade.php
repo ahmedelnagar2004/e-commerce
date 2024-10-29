@@ -12,9 +12,9 @@
             @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
             
             :root {
-                --primary-color: #2E8B57;
-                --secondary-color: #98FB98;
-                --accent-color: #006400;
+                --primary-color: #ffffff;
+                --text-color: #000000;
+                --hover-color: #333333;
             }
             
             body {
@@ -23,18 +23,108 @@
             }
             
             .navbar {
-                background-color: var(--primary-color);
+                background-color: var(--primary-color) !important;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
             
             .navbar-brand {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: bold;
-                color: white !important;
+                color: var(--text-color) !important;
             }
             
             .nav-link {
-                color: white !important;
+                color: var(--text-color) !important;
                 font-weight: 500;
+                transition: color 0.3s ease;
+                padding: 0.5rem 1rem;
+                margin: 0 0.2rem;
+            }
+            
+            .nav-link:hover {
+                color: #666666 !important;
+            }
+            
+            .navbar-toggler {
+                border-color: var(--text-color);
+            }
+            
+            .btn-outline-light {
+                border-color: var(--text-color);
+                color: var(--text-color);
+            }
+            
+            .btn-outline-light:hover {
+                background-color: var(--text-color);
+                color: var(--primary-color);
+            }
+            
+            .footer {
+                background-color: var(--primary-color) !important;
+                color: var(--text-color) !important;
+                padding: 3rem 0 2rem;
+                margin-top: 5rem;
+            }
+            
+            .footer h5 {
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+                font-size: 1.2rem;
+            }
+            
+            .footer ul li {
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer a {
+                color: var(--text-color) !important;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            
+            .footer a:hover {
+                color: #666666 !important;
+            }
+            
+            .footer hr {
+                border-color: rgba(255,255,255,0.1);
+                margin: 2rem 0;
+            }
+            
+            .footer .text-center {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+            
+            @media (max-width: 767px) {
+                .navbar-brand {
+                    font-size: 1.5rem;
+                }
+                
+                .footer {
+                    padding: 2rem 0 1rem;
+                    text-align: center;
+                }
+                
+                .footer h5 {
+                    margin-top: 1.5rem;
+                }
+            }
+            
+            .form-control {
+                background-color: white !important;
+                border: 1px solid black !important;
+                color: black !important;
+            }
+            
+            .form-control::placeholder {
+                color: #666666 !important;
+            }
+            
+            .form-control:focus {
+                box-shadow: none !important;
+                border-color: black !important;
             }
             
             .card {
@@ -45,11 +135,6 @@
             .card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            }
-            
-            .footer {
-                background-color: var(--primary-color);
-                color: white;
             }
             
             .whatsapp-float {
@@ -120,37 +205,52 @@
                     font-size: 30px;
                 }
             }
+
+            /* تنسيق زر البحث */
+            .btn-outline-dark {
+                background-color: white !important;
+                border: 1px solid black !important;
+                color: black !important;
+            }
+
+            .btn-outline-dark:hover {
+                background-color: black !important;
+                color: white !important;
+            }
         </style>
         @yield('styles')
     </head>
     <body>
         <!-- Header -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg" style="background-color: white !important; box-shadow: 0 2px 4px rgba(0,0,0,.1);">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('shop.index') }}">
-                    <i class="fas fa-leaf me-2"></i>متجر ترياق
+                <a class="navbar-brand" href="{{ route('shop.index') }}" style="color: black !important;">
+                    <i class="fas fa-leaf me-2" style="color: black;"></i>متجر ترياق
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                        style="border-color: black;">
+                    <span class="navbar-toggler-icon" style="background-color: black;"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('index') }}">الرئيسية</a>
+                            <a class="nav-link" style="color: black !important;" href="{{ route('index') }}">الرئيسية</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('products*') ? 'active' : '' }}" href="{{ route('shop.index') }}">المنتجات</a>
+                            <a class="nav-link" style="color: black !important;" href="{{ route('shop.index') }}">المنتجات</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('socialmedia') }}">تواصل معانا </a>
+                            <a class="nav-link" style="color: black !important;" href="{{ route('socialmedia') }}">تواصل معانا </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('sizeshart') }}">جدول المقاسات</a>
+                            <a class="nav-link" style="color: black !important;" href="{{ route('sizeshart') }}">جدول المقاسات</a>
                         </li>
                     </ul>
                     <form class="d-flex" action="" method="GET">
-                        <input class="form-control me-2" type="search" name="query" placeholder="ابحث عن منتج" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">بحث</button>
+                        <input class="form-control me-2" type="search" name="query" placeholder="ابحث عن منتج" 
+                               style="border-color: black; color: black; background-color: white;" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit" style="border-color: black; color: black;">بحث</button>
                     </form>
                 </div>
             </div>
@@ -162,31 +262,31 @@
         </main>
 
         <!-- Footer -->
-        <footer class="footer mt-5 py-4">
+        <footer class="footer mt-5 py-4" style="background-color: white !important; color: black !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h5><i class="fas fa-leaf me-2"></i>متجر ترياق</h5>
-                        <p>نقدم أفضل المنتجات الطبيعية والعشبية لصحتك ورفاهيتك.</p>
+                        <h5 style="color: black;"><i class="fas fa-leaf me-2"></i>متجر ترياق</h5>
+                        <p style="color: black;">نقدم أفضل المنتجات الطبيعية والعشبية لصحتك ورفاهيتك.</p>
                     </div>
                     <div class="col-md-4">
-                        <h5>روابط سريعة</h5>
+                        <h5 style="color: black;">روابط سريعة</h5>
                         <ul class="list-unstyled">
-                            <li><a href="{{ route('shop.index') }}" class="text-white">الرئيسية</a></li>
-                            <li><a href="{{ route('shop.index') }}" class="text-white">المنتجات</a></li>
-                            <li><a href="{{ route('socialmedia') }}" class="text-white">تواصل معانا</a></li>
-                            <li><a href="{{ route('sizeshart') }}" class="text-white">جدول المقاسات</a></li>
+                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">الرئيسية</a></li>
+                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">المنتجات</a></li>
+                            <li><a href="{{ route('socialmedia') }}" style="color: black !important;">تواصل معانا</a></li>
+                            <li><a href="{{ route('sizeshart') }}" style="color: black !important;">جدول المقاسات</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <h5>تواصل معنا</h5>
-                        <p><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
-                        <p><i class="fas fa-phone me-2"></i>01508092004</p>
+                        <h5 style="color: black;">تواصل معنا</h5>
+                        <p style="color: black;"><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
+                        <p style="color: black;"><i class="fas fa-phone me-2"></i>01508092004</p>
                     </div>
                 </div>
-                <hr class="bg-white">
+                <hr style="background-color: black;">
                 <div class="text-center">
-                    <p>&copy; 2025متجر ترياق. جميع الحقوق محفوظة.</p>
+                    <p style="color: black;">&copy; 2025متجر ترياق. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </footer>

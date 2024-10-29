@@ -89,6 +89,10 @@
                                 <div class="swiper-slide">
                                     <img src="{{ asset('storage/' . $product->{'image-'.$i}) }}" alt="{{ $product->name }} - صورة {{ $i }}">
                                 </div>
+                            @else
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" alt="{{ $product->name }} - صورة {{ $i }}">
+                                </div>
                             @endif
                         @endfor
                     </div>
