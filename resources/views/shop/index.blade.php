@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">منتجاتنا الطبيعية</h1>
+    <h1 class="text-center mb-4"> COLLECTION</h1>
     <div class="row row-cols-2 row-cols-md-3 g-4">
         @foreach ($products as $product)
             <div class="col">
@@ -16,8 +16,8 @@
                     </div>
                     <div class="card-body text-center">
                         <h5 class="card-title product-name">{{ $product->name }}</h5>
-                        <p class="card-text fw-bold">{{ number_format($product->price, 2) }} ج.م</p>
-                        <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} ج.م</p>
+                        <p class="card-text fw-bold">{{ number_format($product->price, 2) }}L.E</p>
+                        <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }}L.E</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
     
     body {
         font-family: 'Tajawal', sans-serif;
-        background-color: #F0FFF0;
+        background-color: #fafafa;
     }
     
     .navbar {
@@ -46,14 +46,21 @@
     }
     
     .navbar-brand {
-        font-size: 2rem;
-        font-weight: bold;
-        color: white !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        color: #333 !important; /* لون أسود للنص */
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important; /* تأكيد الظهور */
+        visibility: visible !important; /* تأكيد الرؤية */
+        opacity: 1 !important; /* تأكيد الشفافية */
+        z-index: 1000 !important; /* تأكيد أنه فوق العناصر الأخرى */
     }
     
     .card {
         border: none;
-        background-color: transparent;
+        background-color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
     .card:hover {
@@ -140,5 +147,13 @@
        border-bottom: 3px solid #000000;
        padding-bottom: 2px;
    }
+
+    /* تأكيد أن الحاوية الرئيسية للناف بار تعرض العناصر بشكل صحيح */
+    .nav-wrapper {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
 </style>
 @endsection

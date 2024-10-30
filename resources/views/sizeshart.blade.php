@@ -114,14 +114,14 @@
 <style>
     .size-chart-page {
         padding: 50px 0;
-        background-color: #f8f9fa;
+        background-color: #ffffff;
     }
 
     .size-chart-container {
         background-color: #fff;
-        border-radius: 10px;
+        border-radius: 8px;
         padding: 30px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .table {
@@ -134,15 +134,19 @@
     }
 
     .thead-dark th {
-        background-color: #343a40;
+        background-color: #2c3e50;
         color: #fff;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
     }
 
     .size-guide {
         background-color: #fff;
-        border-radius: 10px;
+        border-radius: 8px;
         padding: 30px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .size-guide ul {
@@ -152,6 +156,15 @@
 
     .size-guide li {
         margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    h1, h2, h3 {
+        color: #2c3e50;
+    }
+
+    strong {
+        color: #2c3e50;
     }
 </style>
 @endsection

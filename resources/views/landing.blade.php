@@ -1,4 +1,5 @@
-<!doctype html>
+@extends('layouts.app')
+ @section('content')
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -81,48 +82,14 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
     
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-        <!-- زر القائمة المنسدلة -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <!-- القائمة المنسدلة -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('index') }}">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('shop.index') }}">SHOP</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('socialmedia') }}">CONTACT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('sizeshart') }}">SIZE CHART</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- اسم البراند في المنتصف -->
-        <a class="brand-arabic mx-auto" href="{{ route('index') }}">ترياق</a>
-
-        <!-- عربة التسوق على اليمين -->
-        <a href="{{ route('cart.index') }}" class="btn btn-outline-light">
-            <i class="bi bi-cart"></i>
-        </a>
-    </div>
-  </nav>
-</header>
 
 <main>
 
@@ -138,9 +105,9 @@
 
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">Sign up today</a></p>
+            <h1>WELCOME TO OUR STORE</h1>
+            <p>PURCHASE THE BEST QUALITY PRODUCTS</p>
+            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
           </div>
         </div>
       </div>
@@ -149,9 +116,9 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">Learn more</a></p>
+            <h1>START JOURNEY WITH US</h1>
+            <p>PURCHASE THE BEST STARTING PRODUCTS</p>
+            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
           </div>
         </div>
       </div>
@@ -160,9 +127,9 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">Browse gallery</a></p>
+            <h1>BEST QUALITY PRODUCTS</h1>
+            <p>PURCHASE THE BEST QUALITY PRODUCTS</p>
+            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
           </div>
         </div>
       </div>
@@ -177,6 +144,62 @@
     </button>
   </div>
 
+<!-- شريط الأخبار المتحرك -->
+<div class="news-ticker">
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
+            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
+            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
+            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
+            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
+            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
+            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
+            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
+        </div>
+    </div>
+</div>
+
+<!-- أضف هذا CSS في قسم styles -->
+<style>
+    .news-ticker {
+        background-color: #000;
+        color: white;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ticker-wrap {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .ticker {
+        display: inline-flex;
+        white-space: nowrap;
+        animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+        padding: 0 2rem;
+        font-weight: bold;
+    }
+
+    @keyframes ticker {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    /* لإيقاف الحركة عند تمرير الماوس */
+    .ticker:hover {
+        animation-play-state: paused;
+    }
+</style>
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
@@ -190,10 +213,10 @@
                 <div class="image-wrapper mx-auto mb-4">
                     <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="rounded-circle shadow" alt="ترياق">
                 </div>
-                <h3 class="title-arabic mb-3">ترياق</h3>
-                <p class="text-muted">وصف المنتج هنا. يمكنك إضافة تفاصيل عن المنتج وخصائصه المميزة.</p>
+                <h3 class="title-arabic mb-3">TRTAQ</h3>
+                <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
                 <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    عرض التفاصيل
+                    VIEW DETAILS
                 </a>
             </div>
         </div>
@@ -204,10 +227,10 @@
                 <div class="image-wrapper mx-auto mb-4">
                     <img src="{{ asset("images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg") }}" class="rounded-circle shadow" alt="ترياق">
                 </div>
-                <h3 class="title-arabic mb-3">ترياق</h3>
-                <p class="text-muted">وصف المنتج هنا. يمكنك إضافة تفاصيل عن المنتج وخصائصه المميزة.</p>
+                <h3 class="title-arabic mb-3">TRTAQ</h3>
+                <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
                 <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    عرض التفاصيل
+                    VIEW DETAILS
                 </a>
             </div>
         </div>
@@ -218,10 +241,10 @@
                 <div class="image-wrapper mx-auto mb-4">
                     <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="rounded-circle shadow" alt="ترياق">
                 </div>
-                <h3 class="title-arabic mb-3">ترياق</h3>
-                <p class="text-muted">وصف المنتج هنا. يمكنك إضافة تفاصيل عن المنتج وخصائصه المميزة.</p>
+                <h3 class="title-arabic mb-3">TRTAQ</h3>
+                  <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
                 <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    عرض التفاصيل
+                    VIEW DETAILS
                 </a>
             </div>
         </div>
@@ -285,18 +308,37 @@
             margin-bottom: 2rem;
         }
     }
+
+    /* تنسيق زر السلايدر */
+    .carousel-caption .btn-primary {
+        background-color: #ffffff;  /* خلفية بيضاء */
+        border-color: #ffffff;      /* حدود بيضاء */
+        color: #000000;             /* نص أسود */
+        padding: 10px 25px;         
+        transition: all 0.3s ease;   
+    }
+
+    /* تأثير التحويم على الزر */
+    .carousel-caption .btn-primary:hover {
+        background-color: transparent;  /* خلفية شفافة */
+        border-color: #ffffff;          /* حدود بيضاء */
+        color: #ffffff;                 /* نص أبيض */
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(255,255,255,0.2);
+    }
+
+    /* عند الضغط على الزر */
+    .carousel-caption .btn-primary:active {
+        transform: translateY(-1px);
+    }
 </style>
 
   <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</main>
-
+  
 
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
       
   </body>
 </html>
+@endsection

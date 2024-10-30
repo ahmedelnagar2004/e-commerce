@@ -23,31 +23,81 @@
             }
             
             .navbar {
-                background-color: var(--primary-color) !important;
-                padding: 1rem 0;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                background-color: white !important;
+                padding: 15px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            .nav-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
             }
             
             .navbar-brand {
-                font-size: 1.8rem;
-                font-weight: bold;
-                color: var(--text-color) !important;
+                color: #333 !important;
+                font-size: 24px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .nav-icons {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .nav-icons button,
+            .nav-icons a {
+                background: none;
+                border: none;
+                color: #333 !important;
+                font-size: 18px;
+                padding: 5px;
+            }
+            
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 1000;
             }
             
             .nav-link {
-                color: var(--text-color) !important;
-                font-weight: 500;
-                transition: color 0.3s ease;
-                padding: 0.5rem 1rem;
-                margin: 0 0.2rem;
+                color: #333 !important;
+                text-align: right;
+                padding: 10px 15px;
             }
             
-            .nav-link:hover {
-                color: #666666 !important;
+            .search-bar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 1000;
             }
             
-            .navbar-toggler {
-                border-color: var(--text-color);
+            .search-bar .form-control {
+                border-radius: 20px 0 0 20px;
+            }
+            
+            .search-bar .btn {
+                border-radius: 0 20px 20px 0;
+                border-color: #2E8B57;
+                color: #2E8B57;
+            }
+            
+            .search-bar .btn:hover {
+                background-color: #2E8B57;
+                color: white;
             }
             
             .btn-outline-light {
@@ -217,41 +267,146 @@
                 background-color: black !important;
                 color: white !important;
             }
+
+            /* إضافة هذه الأنماط إلى قسم الـ styles */
+            /* ستايل زر المنيو */
+            .menu-btn {
+                background: none;
+                border: none;
+                padding: 8px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                width: 35px;
+            }
+
+            .menu-btn span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #333;
+                transition: all 0.3s ease;
+                border-radius: 2px;
+            }
+
+            /* ستايل أيقونات الموبايل */
+            .mobile-icons {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .mobile-icons button,
+            .mobile-icons a {
+                background: none;
+                border: none;
+                padding: 5px;
+                color: #333;
+                font-size: 18px;
+            }
+
+            /* ستايل البحث في الموبايل */
+            .mobile-search {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .mobile-search .form-control {
+                border-radius: 20px 0 0 20px;
+            }
+
+            .mobile-search .btn {
+                border-radius: 0 20px 20px 0;
+            }
+
+            /* تنسيق البراند في الموبايل */
+            @media (max-width: 991px) {
+                .navbar-brand {
+                    margin: 0 !important;
+                    font-size: 24px !important;
+                }
+
+                .mobile-header {
+                    padding: 10px 0;
+                }
+
+                .navbar {
+                    padding: 0 !important;
+                }
+
+                #navbarNav {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: white;
+                    padding: 15px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                }
+
+                .nav-item {
+                    margin: 10px 0;
+                    text-align: right;
+                }
+            }
         </style>
         @yield('styles')
     </head>
     <body>
         <!-- Header -->
-        <nav class="navbar navbar-expand-lg" style="background-color: white !important; box-shadow: 0 2px 4px rgba(0,0,0,.1);">
+        <nav class="navbar">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('shop.index') }}" style="color: black !important;">
-                    <i class="fas fa-leaf me-2" style="color: black;"></i>متجر ترياق
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                        style="border-color: black;">
-                    <span class="navbar-toggler-icon" style="background-color: black;"></span>
-                </button>
+                <div class="nav-wrapper">
+                    <!-- زر المنيو -->
+                    <button class="menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!-- البراند في النص -->
+                    <a class="navbar-brand" href="{{ route('shop.index') }}">
+                        TRYAQ
+                    </a>
+
+                    <!-- أيقونات البحث والسلة -->
+                    <div class="nav-icons">
+                        <button class="search-toggle">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <a href="{{ route('shop.index')}}" class="cart-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- شريط البحث -->
+                <div class="search-bar collapse">
+                    <form class="d-flex" action="" method="GET">
+                        <input class="form-control" type="search" name="query" placeholder="ابحث عن منتج">
+                        <button class="btn btn-outline-light" type="submit">بحث</button>
+                    </form>
+                </div>
+            
+
+                <!-- القائمة المنسدلة -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" style="color: black !important;" href="{{ route('index') }}">الرئيسية</a>
+                            <a class="nav-link" href="{{ route('index') }}">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: black !important;" href="{{ route('shop.index') }}">المنتجات</a>
+                            <a class="nav-link" href="{{ route('shop.index') }}">PRODUCTS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: black !important;" href="{{ route('socialmedia') }}">تواصل معانا </a>
+                            <a class="nav-link" href="{{ route('socialmedia') }}">CONTACT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: black !important;" href="{{ route('sizeshart') }}">جدول المقاسات</a>
+                            <a class="nav-link" href="{{ route('sizeshart') }}"> SIZES CHART</a>
                         </li>
                     </ul>
-                    <form class="d-flex" action="" method="GET">
-                        <input class="form-control me-2" type="search" name="query" placeholder="ابحث عن منتج" 
-                               style="border-color: black; color: black; background-color: white;" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit" style="border-color: black; color: black;">بحث</button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -266,27 +421,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h5 style="color: black;"><i class="fas fa-leaf me-2"></i>متجر ترياق</h5>
-                        <p style="color: black;">نقدم أفضل المنتجات الطبيعية والعشبية لصحتك ورفاهيتك.</p>
+                        <h5 style="color: black;"><i class="fas fa-leaf me-2"></i>TRYAQ STORE</h5>
+                        <p style="color: black;">We offer the best natural and herbal products for your health and well-being.</p>
                     </div>
                     <div class="col-md-4">
-                        <h5 style="color: black;">روابط سريعة</h5>
+                        <h5 style="color: black;"> LINKS</h5>
                         <ul class="list-unstyled">
-                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">الرئيسية</a></li>
-                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">المنتجات</a></li>
-                            <li><a href="{{ route('socialmedia') }}" style="color: black !important;">تواصل معانا</a></li>
-                            <li><a href="{{ route('sizeshart') }}" style="color: black !important;">جدول المقاسات</a></li>
+                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">HOME</a></li>
+                            <li><a href="{{ route('shop.index') }}" style="color: black !important;">PRODUCTS</a></li>
+                            <li><a href="{{ route('socialmedia') }}" style="color: black !important;">CONTACT US</a></li>
+                            <li><a href="{{ route('sizeshart') }}" style="color: black !important;">SIZES CHART</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <h5 style="color: black;">تواصل معنا</h5>
+                        <h5 style="color: black;">CONTACT US</h5>
                         <p style="color: black;"><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
                         <p style="color: black;"><i class="fas fa-phone me-2"></i>01508092004</p>
                     </div>
                 </div>
                 <hr style="background-color: black;">
                 <div class="text-center">
-                    <p style="color: black;">&copy; 2025متجر ترياق. جميع الحقوق محفوظة.</p>
+                    <p style="color: black;">&copy; 2025Teryaq Store. All rights reserved.</p>
                 </div>
             </div>
         </footer>
@@ -297,6 +452,30 @@
         </a>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css"></script>
+        <script>
+            // إضافة الجافاسكربت
+document.addEventListener('DOMContentLoaded', function() {
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchBar = document.querySelector('.search-bar');
+    
+    if(searchToggle && searchBar) {
+        searchToggle.addEventListener('click', function() {
+            searchBar.classList.toggle('show');
+        });
+    }
+
+    // إغلاق القوائم عند النقر خارجها
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.navbar')) {
+            searchBar.classList.remove('show');
+            document.querySelector('#navbarNav').classList.remove('show');
+        }
+    });
+            });
+        </script>
         @yield('scripts')
     </body>
 </html>

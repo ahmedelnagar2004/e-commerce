@@ -22,15 +22,13 @@
             <tbody>
                 @foreach($orders as $order)
                 <tr>
-                    <td>{{ $order->id }}</td>
-                    <td>{{ $order->name }}</td>
-                    <td>{{ $order->email }}</td>
-                    <td>{{ $order->phone }}</td>
-                    <td>{{ $order->address }}</td>
-                    <td>{{ number_format($order->total_amount, 2) }} ج.م</td>
-
-                    <td>
-
+                    <td data-label="رقم الطلب">{{ $order->id }}</td>
+                    <td data-label="اسم العميل">{{ $order->name }}</td>
+                    <td data-label="البريد الإلكتروني">{{ $order->email }}</td>
+                    <td data-label="رقم الهاتف">{{ $order->phone }}</td>
+                    <td data-label="العنوان">{{ $order->address }}</td>
+                    <td data-label="إجمالي المبلغ">{{ number_format($order->total_amount, 2) }} ج.م</td>
+                    <td data-label="الحالة">
                         <span class="status-icon" id="status-icon-{{ $order->id }}">
                             @if($order->status == 'pending')
                                 <i class="fas fa-clock text-warning"></i>
@@ -46,7 +44,7 @@
                         </span>
                         <span id="status-text-{{ $order->id }}">{{ ucfirst($order->status) }}</span>
                     </td>
-                    <td>
+                    <td data-label="التفاصيل">
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{ $order->id }}">
                             عرض التفاصيل
                         </button>
@@ -204,4 +202,67 @@ $(document).ready(function() {
     });
 });
 </script>
+@endsection
+
+@section('styles')
+<style>
+    /* التنسيق العام للجدول */
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    /* تنسيقات خاصة بالموبايل */
+    @media screen and (max-width: 768px) {
+        /* إخفاء رؤوس الجدول على الموبايل */
+        .table thead {
+            display: none;
+        }
+
+        /* تحويل صفوف الجدول إلى بطاقات */
+        .table tr {
+            display: block;
+            margin-bottom: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .table td {
+            display: block;
+            text-align: right;
+            padding: 0.5rem 0;
+            border: none;
+        }
+
+        /* إضافة عنا��ين للبيانات */
+        .table td:before {
+            content: attr(data-label);
+            float: right;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+
+        /* تنسيق الأزرار */
+        .btn-primary {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* تنسيق المودال */
+        .modal-dialog {
+            margin: 0.5rem;
+        }
+
+        /* تنسيق صور المنتجات */
+        .table img {
+            width: 80px;
+            height: 80px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+</style>
 @endsection

@@ -5,75 +5,116 @@
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <style>
+    body {
+        background-color: #fafafa;
+    }
+
     .product-container {
-        background-color: #f8f9fa;
+        background-color: white;
         border-radius: 10px;
         padding: 30px;
         box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
     }
+
     .swiper-container {
         width: 100%;
         height: 400px;
         border-radius: 10px;
         overflow: hidden;
     }
+
     .swiper-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
+
     .swiper-button-next, .swiper-button-prev {
-        color: #28a745;
+        color: #333 !important;
     }
+
     .swiper-pagination-bullet-active {
-        background-color: #28a745;
+        background-color: #333 !important;
     }
+
     .size-btn {
-        border: 2px solid #28a745;
+        border: 2px solid #333;
         background-color: white;
-        color: #28a745;
+        color: #333;
         padding: 8px 16px;
         margin: 5px;
         border-radius: 20px;
         transition: all 0.3s ease;
     }
+
     .size-btn:hover, .size-btn.active {
-        background-color: #28a745;
+        background-color: #333;
         color: white;
     }
+
     .btn-add-to-cart {
         background-color: white;
-        color: #28a745;
-        border: 2px solid #28a745;
+        color: #333;
+        border: 2px solid #333;
         transition: all 0.3s ease;
         padding: 10px 30px;
         border-radius: 25px;
     }
+
     .btn-add-to-cart:hover {
-        background-color: #28a745;
+        background-color: #333;
         color: white;
     }
+
     .shipping-policy {
-        background-color: #fff5f5;
+        background-color: white;
         border-radius: 10px;
         padding: 20px;
         margin-top: 30px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+
     .shipping-policy h3 {
         color: #333;
         margin-bottom: 15px;
+        border-bottom: 3px solid #333;
+        display: inline-block;
+        padding-bottom: 5px;
     }
+
     .shipping-policy p {
         margin-bottom: 10px;
+        color: #333;
     }
+
     .shipping-policy ul {
         padding-left: 20px;
+        color: #333;
     }
-    .discounted-price {
-    text-decoration: line-through;
-    color: rgb(0, 0, 0);
-}
 
+    .discounted-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 0.9em;
+    }
+
+    h1 {
+        border-bottom: 3px solid #333;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .product-description {
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .price {
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 </style>
 @endsection
 
@@ -105,14 +146,14 @@
                <b> <h1 class="mb-4">{{ $product->name }}</h1></b>
                 <b><p class="mb-4">{{ $product->description }}</p></b></b>
 
-                    <p class="fw-bold fs-4 mb-4">السعر: {{ number_format($product->price, 2) }} ج.م</p> 
-                    <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} ج.م</p>
+                    <p class="fw-bold fs-4 mb-4">Price: {{ number_format($product->price, 2) }} L.E</p> 
+                    <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} L.E</p>
                 <form action="{{ route('cart.add') }}" method="POST">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     
                     <div class="mb-4">
-                        <label class="form-label fw-bold">المقاس:</label>
+                        <label class="form-label fw-bold">Size:</label>
                         <div>
                             @foreach($product->sizes as $size)
                                 <input type="radio" name="size" id="size{{ $size->id }}" value="{{ $size->id }}" class="d-none" required>
@@ -122,11 +163,11 @@
                     </div>
                     
                     <div class="mb-4">
-                        <label for="quantity" class="form-label fw-bold">الكمية:</label>
+                        <label for="quantity" class="form-label fw-bold">Quantity:</label>
                         <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" required style="max-width: 100px;">
                     </div>
                     
-                    <button type="submit" class="btn btn-add-to-cart">أضف إلى السلة</button>
+                    <button type="submit" class="btn btn-add-to-cart">Add to Cart</button>
                 </form>
             </div>
         </div>
@@ -138,15 +179,15 @@
     </div>
 
     <div class="shipping-policy">
-        <h3><i class="fas fa-truck"></i> الشحن</h3>
-        <p>الطلبات العادية تستغرق من 2-6 أيام عمل</p>
-        <p>الطلبات المسبقة تستغرق من 10-15 يوم عمل</p>
+        <h3><i class="fas fa-truck"></i> Shipping</h3>
+        <p>Regular orders take 2-6 business days</p>
+        <p>Pre-orders take 10-15 business days</p>
 
-        <h3 class="mt-4"><i class="fas fa-shield-alt"></i> السياسة</h3>
+        <h3 class="mt-4"><i class="fas fa-shield-alt"></i> Return Policy</h3>
         <ul>
-            <li>تحقق من أن الطلب يناسبك جيدًا قبل الدفع. إذا لم يكن كذلك، يرجى إرجاعه مع ساعي البريد في الموقع ودفع رسوم الشحن فقط. لا توجد مرتجعات بعد دفع ثمن طلبك، فقط التبادل خلال 14 يومًا من يوم الشراء. ملاحظة: العملاء مسؤولون عن أي تكاليف إضافية.</li>
-            <li><strong>سياسة الاسترجاع:</strong> بمجرد مغادرة ساعي البريد، لا يوجد تبادل أو استرداد</li>
-            <li><strong>لا توجد مرتجعات أو تبادلات على العناصر المخفضة:</strong> المنتجات المشتراة بأسعار مخفضة لا يمكن إرجاعها أو تبادلها. يمكنك تجربة العنصر أثناء انتظار ساعي البريد، ولكن بمجرد مغادرتهم، لن يكون هناك تبادل أو استرداد متاح.</li>
+                <li>Check that the order fits you well before payment. If not, please return it with the mailer at the site and pay only the shipping costs. There are no returns after payment, only exchanges within 14 days of purchase. Note: Customers are responsible for any additional costs.</li>
+            <li><strong>Return Policy:</strong> Once the mailer leaves, there is no exchange or refund</li>
+            <li><strong>No returns or exchanges on discounted items:</strong> Items purchased at reduced prices cannot be returned or exchanged. You can try the item while waiting for the mailer, but once they leave, there will be no exchange or refund available.</li>
         </ul>
     </div>
 </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">العربة</h1>
+    <h1 class="text-center mb-4">CART</h1>
     @if(count($cartItems) > 0)
         <div class="row">
             <div class="col-md-8">
@@ -21,12 +21,12 @@
                             <div class="col-md-9">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $details['name'] }}</h5>
-                                    <p class="card-text">المقاس: {{ $details['size'] }}</p>
-                                    <p class="card-text">الكمية: {{ $details['quantity'] }}</p>
-                                    <p class="card-text">السعر: {{ number_format($details['price'], 2) }} ج.م</p>
+                                    <p class="card-text">SIZE: {{ $details['size'] }}</p>
+                                    <p class="card-text">QUANTITY: {{ $details['quantity'] }}</p>
+                                    <p class="card-text">PRICE: {{ number_format($details['price'], 2) }} L.E</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <button class="btn btn-outline-danger remove-from-cart">
-                                            <i class="fas fa-trash-alt me-2"></i> إزالة
+                                            <i class="fas fa-trash-alt me-2"></i> REMOVE
                                         </button>
                                     </div>
                                 </div>
@@ -38,21 +38,21 @@
             <div class="col-md-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">ملخص الطلب</h5>
+                        <h5 class="card-title"> SUMMARY </h5>
                         @php
                             $subtotal = array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cartItems));
                             $shipping = 100;
                             $total = $subtotal + $shipping;
                         @endphp
-                        <p class="card-text">إجمالي المنتجات: <strong>{{ number_format($subtotal, 2) }} ج.م</strong></p>
-                        <p class="card-text">رسوم التوصيل: <strong>{{ number_format($shipping, 2) }} ج.م</strong></p>
+                        <p class="card-text">PRODUCTS TOTAL: <strong>{{ number_format($subtotal, 2) }} L.E</strong></p>
+                        <p class="card-text">SHIPPING COST: <strong>{{ number_format($shipping, 2) }} L.E</strong></p>
                         <hr>
-                        <p class="card-text"><b>المجموع الكلي: <strong>{{ number_format($total, 2) }} ج.م</strong></b></p>
+                        <p class="card-text"><b>TOTAL: <strong>{{ number_format($total, 2) }} L.E</strong></b></p>
                         <a href="{{ route('shop.index') }}" class="btn btn-primary w-100 mb-2">
-                            <i class="fas fa-shopping-bag me-2"></i>متابعة التسوق
+                            <i class="fas fa-shopping-bag me-2"></i>CONTINUE SHOPPING
                         </a>
                         <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-                            <i class="fas fa-credit-card me-2"></i>إتمام الشراء
+                            <i class="fas fa-credit-card me-2"></i>CONFIRM ORDER
                         </button>
                     </div>
                 </div>
@@ -60,10 +60,10 @@
         </div>
     @else
         <div class="alert alert-info text-center">
-            <h4>العربة فارغة</h4>
-            <p>لم تقم بإضافة أي منتجات إلى العربة بعد.</p>
+            <h4> EMPTY CART</h4>
+            <p>You haven't added any products to the cart yet.</p>
             <a href="{{ route('shop.index') }}" class="btn btn-primary mt-3">
-                <i class="fas fa-shopping-bag me-2"></i>تسوق الآن
+                <i class="fas fa-shopping-bag me-2"></i>SHOP NOW
             </a>
         </div>
     @endif
@@ -74,7 +74,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="checkoutModalLabel">إتمام الشراء</h5>
+                <h5 class="modal-title" id="checkoutModalLabel">CLIENT DETAILS</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -82,19 +82,19 @@
                     <form id="checkoutForm">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">الاسم</label>
+                            <label for="name" class="form-label">NAME</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <label for="email" class="form-label">EMAIL</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">رقم الهاتف</label>
+                            <label for="phone" class="form-label">PHONE</label>
                             <input type="tel" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">العنوان</label>
+                            <label for="address" class="form-label">ADDRESS</label>
                             <textarea class="form-control" id="address" name="address" required></textarea>
                         </div>
                     </form>
@@ -102,14 +102,14 @@
                 <div id="orderSuccess" style="display: none;">
                     <div class="text-center">
                         <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
-                        <h4 class="mt-3">تم تأكيد الطلب بنجاح</h4>
-                        <p>سيتم تنفيذ الطلب خلال 2 إلى 7 أيام</p>
+                        <h4 class="mt-3">ORDER CONFIRMED SUCCESSFULLY</h4>
+                        <p>The order will be processed within 2 to 7 days</p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                <button type="button" class="btn btn-primary" id="submitOrder">تأكيد الطلب</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary" id="submitOrder">CONFIRM ORDER</button>
             </div>
         </div>
     </div>
@@ -120,15 +120,15 @@
     </div>
 
     <div class="shipping-policy">
-        <h3><i class="fas fa-truck"></i> الشحن</h3>
-        <p>الطلبات العادية تستغرق من 2-6 أيام عمل</p>
-        <p>الطلبات المسبقة تستغرق من 10-15 يوم عمل</p>
+        <h3><i class="fas fa-truck"></i> SHIPPING</h3>
+        <p>Regular orders take 2-6 business days</p>
+        <p>Pre-orders take 10-15 business days</p>
 
-        <h3 class="mt-4"><i class="fas fa-shield-alt"></i> السياسة</h3>
+        <h3 class="mt-4"><i class="fas fa-shield-alt"></i> RETURN & REFUND POLICY</h3>
         <ul>
-            <li>تحق من أن الطلب يناسبك جيدًا قبل الدفع. إذا لم يكن كذلك، يرجى إرجاعه مع ساعي البريد في الموقع ودفع رسوم الشحن فقط. لا توجد مرتجعات بعد دفع ثمن طلبك، فقط التبادل خلال 14 يومًا من يوم الشراء. ملاحظة: العملاء مسؤولون عن أي تكاليف إضافية.</li>
-            <li><strong>سياسة الاسترجاع :</strong> بمجرد مغادرة ساعي البريد، لا يوجد تبادل أو استرداد</li>
-            <li><strong>لا توجد مرتجعات أو تبادلات على العناصر المخفضة:</strong> المنتجات المشتراة بأسعار مخفضة لا يمكن إرجاعها أو تبادلها. يمكنك تجربة العنصر أثناء انتظار ساعي البريد، ولكن بمجرد مغادرتهم، لن يكون هناك تبادل أو استرداد متاح.</li>
+            <li>Make sure the order suits you before payment. If not, please return it with the mailer at the site and pay only the shipping cost. There are no returns after payment, only exchange within 14 days of purchase. Note: Customers are responsible for any additional costs.</li>
+            <li><strong>RETURN & REFUND POLICY :</strong> Once the mailer leaves, there is no exchange or refund</li>
+            <li><strong>No returns or exchanges on discounted items:</strong> Items purchased at reduced prices cannot be returned or exchanged. You can try the item while waiting for the mailer, but once they leave, there will be no exchange or refund available.</li>
         </ul>
     </div>
 </div>
@@ -138,16 +138,16 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteConfirmationModalLabel">تأكيد الحذف</h5>
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">DELETE CONFIRMATION</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <i class="fas fa-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
-                <p class="mt-3">هل أنت متأكد أنك تريد حذف هذا المنتج من العربة؟</p>
+                <p class="mt-3">Are you sure you want to delete this product from the cart?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                <button type="button" class="btn btn-danger" id="confirmDelete">تأكيد الحذف</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">CONFIRM DELETE</button>
             </div>
         </div>
     </div>
@@ -158,18 +158,18 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="orderConfirmationModalLabel">تم تأكيد الطلب</h5>
+                <h5 class="modal-title" id="orderConfirmationModalLabel">ORDER CONFIRMED</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
-                <h4 class="mt-3">تم إنشاء طلبك بنجاح!</h4>
-                <p class="lead">رقم الطلب: <strong id="orderNumber"></strong></p>
-                <p>سيتم معالجة طلبك في أقرب وقت ممكن. شكراً لتسوقك معنا!</p>
+                <h4 class="mt-3">ORDER CONFIRMED SUCCESSFULLY!</h4>
+                <p class="lead">ORDER NUMBER: <strong id="orderNumber"></strong></p>
+                <p>Your order will be processed as soon as possible. Thank you for shopping with us!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-                <a href="{{ route('shop.index') }}" class="btn btn-primary">متابعة التسوق</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                <a href="{{ route('shop.index') }}" class="btn btn-primary">CONTINUE SHOPPING</a>
             </div>
         </div>
     </div>
@@ -178,53 +178,39 @@
 
 @section('styles')
 <style>
+    body {
+        background-color: #fafafa;
+    }
+
+    /* تنسيق البطاقات */
     .card {
         border: none;
         border-radius: 15px;
+        background-color: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+
+    /* تنسيق الأزرار الرئيسية */
     .btn-primary, .btn-success {
+        background-color: #333;
+        border-color: #333;
         border-radius: 25px;
         padding: 10px 20px;
-    }
-    .quantity-input {
-        max-width: 60px;
-    }
-    .shipping-policy {
-        background-color: #fff5f5;
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 30px;
-    }
-    .shipping-policy h3 {
-        color: #333;
-        margin-bottom: 15px;
-    }
-    .shipping-policy p {
-        margin-bottom: 10px;
-    }
-    .shipping-policy ul {
-        padding-left: 20px;
+        transition: all 0.3s ease;
     }
 
-    #orderConfirmationModal .modal-content {
-        border: none;
-        border-radius: 15px;
+    .btn-primary:hover, .btn-success:hover {
+        background-color: #000;
+        border-color: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    #orderConfirmationModal .modal-header {
-        border-radius: 15px 15px 0 0;
-    }
-
-    #orderConfirmationModal .btn {
-        border-radius: 25px;
-        padding: 10px 20px;
-    }
-
-    #orderConfirmationModal .fa-check-circle {
-        color: #28a745;
-    }
-
+    /* تنسيق زر الحذف */
     .btn-outline-danger.remove-from-cart {
+        border: 2px solid #333;
+        color: #333;
+        background-color: white;
         border-radius: 20px;
         padding: 8px 15px;
         font-size: 0.9rem;
@@ -232,18 +218,80 @@
     }
 
     .btn-outline-danger.remove-from-cart:hover {
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
+        background-color: #333;
+        color: white;
         transform: translateY(-2px);
-        box-shadow: 0 2px 5px rgba(1, 1, 1, 0.3);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .btn-outline-danger.remove-from-cart .fas {
-        transition: transform 0.3s ease;
+    /* تنسيق قسم سياسة الشحن */
+    .shipping-policy {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
 
-    .btn-outline-danger.remove-from-cart:hover .fas {
-        transform: rotate(20deg);
+    .shipping-policy h3 {
+        color: #333;
+        margin-bottom: 15px;
+        border-bottom: 3px solid #333;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    /* تنسيق النوافذ المنبثقة */
+    .modal-content {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .modal-header {
+        background-color: #333 !important;
+        color: white !important;
+        border-radius: 15px 15px 0 0;
+    }
+
+    /* تنسيق أيقونات النوافذ المنبثقة */
+    #orderConfirmationModal .fa-check-circle {
+        color: #333 !important;
+    }
+
+    .fa-exclamation-triangle {
+        color: #333 !important;
+    }
+
+    /* تنسيق أزرار النوافذ المنبثقة */
+    .modal .btn-secondary {
+        background-color: #666;
+        border-color: #666;
+        border-radius: 25px;
+    }
+
+    .modal .btn-danger {
+        background-color: #333;
+        border-color: #333;
+        border-radius: 25px;
+    }
+
+    /* تنسيق العناوين */
+    h1, h5.card-title {
+        color: #333;
+    }
+
+    /* تنسيق النصوص */
+    .card-text {
+        color: #333;
+    }
+
+    /* تنسيق الإطار عند العربة الفارغة */
+    .alert-info {
+        background-color: white;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        color: #333;
     }
 </style>
 @endsection
