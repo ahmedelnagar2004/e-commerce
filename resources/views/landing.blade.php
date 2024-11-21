@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Carousel Template · Bootstrap v5.0</title>
+    <title>Tryaq Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -64,6 +64,111 @@
                 font-size: 1.5rem;
             }
         }
+
+        .custom-btn, .animated-btn {
+            background-color: white;
+            color: black;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .custom-btn:hover, .animated-btn:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .carousel-caption {
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: auto;
+            text-align: center;
+        }
+
+        /* إزالة classes text-start و text-end من جميع carousel-caption */
+        .carousel-caption.text-start,
+        .carousel-caption.text-end {
+            text-align: center;
+        }
+
+        /* تغير الألوان الأساسية */
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* إضافة ظل للنص */
+        h1, h2, h3 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* تحسين التصميم المتجاوب */
+        @media (max-width: 768px) {
+            .carousel-caption {
+                padding: 20px;
+            }
+        }
+
+        /* إضافة تأثيرات hover */
+        .custom-btn, .animated-btn {
+            background-color: white;
+            color: black;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .custom-btn:hover, .animated-btn:hover {
+            background-color: transparent;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* إضافة خطوط جديدة */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .testimonials {
+            padding: 100px 0;
+            background-color: #f0f0f0;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card h5 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
     </style>
 
     <style>
@@ -85,6 +190,7 @@
 
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   </head>
   <body>
     
@@ -94,54 +200,72 @@
 <main>
 
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="4"></li>
+    </ol>
+
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="First slide">
-
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>WELCOME TO OUR STORE</h1>
-            <p>PURCHASE THE BEST QUALITY PRODUCTS</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
-          </div>
+        <div class="carousel-item active">
+            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 1">
+            <div class="container">
+                <div class="carousel-caption">
+                  
+                    <p><a class="custom-btn" href="{{ route('shop.index') }}">SHOP NOW</a></p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Second slide">
-
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>START JOURNEY WITH US</h1>
-            <p>PURCHASE THE BEST STARTING PRODUCTS</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
-          </div>
+        <div class="carousel-item">
+            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 2">
+            <div class="container">
+                <div class="carousel-caption">
+                   
+                    <p><a class="custom-btn" href="{{ route('shop.index') }}">SHOP NOW</a></p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Third slide">
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>BEST QUALITY PRODUCTS</h1>
-            <p>PURCHASE THE BEST QUALITY PRODUCTS</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ route('shop.index') }}">START SHOPPING</a></p>
-          </div>
+        <div class="carousel-item">
+            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 3">
+            <div class="container">
+                <div class="carousel-caption">
+                  
+                    <p><a class="custom-btn" href="{{ route('shop.index') }}">SHOP NOW</a></p>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="carousel-item">
+            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 4">
+            <div class="container">
+                <div class="carousel-caption">
+                    
+                    <p><a class="custom-btn" href="{{ route('shop.index') }}">SHOP NOW</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 5">
+            <div class="container">
+                <div class="carousel-caption">
+                  
+                    <p><a class="custom-btn" href="{{ route('shop.index') }}">SHOP NOW</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
   </div>
 
 <!-- شريط الأخبار المتحرك -->
@@ -156,18 +280,24 @@
             <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
             <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
             <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
+            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
+            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
+            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
+            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
+            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
+            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
+            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
+            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
         </div>
     </div>
 </div>
 
-<!-- أضف هذا CSS في قسم styles -->
 <style>
     .news-ticker {
-        background-color: #000;
-        color: white;
+        background: #000;
         padding: 10px 0;
-        position: relative;
         overflow: hidden;
+        position: relative;
     }
 
     .ticker-wrap {
@@ -183,157 +313,489 @@
 
     .ticker-item {
         padding: 0 2rem;
+        color: white;
         font-weight: bold;
     }
 
     @keyframes ticker {
-        0% {
-            transform: translateX(100%);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-
-    /* لإيقاف الحركة عند تمرير الماوس */
-    .ticker:hover {
-        animation-play-state: paused;
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
 </style>
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
-  <div class="container marketing py-5">
-    <div class="row g-4">
-        <!-- العنصر الأول -->
-        <div class="col-12 col-md-4">
-            <div class="feature-card text-center">
-                <div class="image-wrapper mx-auto mb-4">
-                    <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="rounded-circle shadow" alt="ترياق">
-                </div>
-                <h3 class="title-arabic mb-3">TRTAQ</h3>
-                <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
-                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    VIEW DETAILS
-                </a>
+<!-- Vision & Mission Section -->
+<section class="vision-mission">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Vision & Mission</h2>
             </div>
         </div>
-
-        <!-- العنصر الثاني -->
-        <div class="col-12 col-md-4">
-            <div class="feature-card text-center">
-                <div class="image-wrapper mx-auto mb-4">
-                    <img src="{{ asset("images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg") }}" class="rounded-circle shadow" alt="ترياق">
+        
+        <div class="row g-4">
+            <!-- Vision Card -->
+            <div class="col-md-6">
+                <div class="content-card vision">
+                    <div class="card-content">
+                        <span class="icon-circle">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                        <h3>Our Vision</h3>
+                        <p> redefine fashion by creating timeless, sustainable, and inclusive clothing that empowers individuals to express their authentic selves. We aim to blend style with purpose, ensuring every piece we design is crafted with care for both the planet and its people.</p>
+                    </div>
+                    <div class="hover-content">
+                        <span class="number">01</span>
+                        <div class="line"></div>
+                    </div>
                 </div>
-                <h3 class="title-arabic mb-3">TRTAQ</h3>
-                <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
-                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    VIEW DETAILS
-                </a>
             </div>
-        </div>
 
-        <!-- العنصر الثالث -->
-        <div class="col-12 col-md-4">
-            <div class="feature-card text-center">
-                <div class="image-wrapper mx-auto mb-4">
-                    <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="rounded-circle shadow" alt="ترياق">
+            <!-- Mission Card -->
+            <div class="col-md-6">
+                <div class="content-card mission">
+                    <div class="card-content">
+                        <span class="icon-circle">
+                            <i class="bi bi-flag"></i>
+                        </span>
+                        <h3>Our Mission</h3>
+                        <p>To provide exceptional products and services that enhance our customers' lives while 
+                        maintaining the highest standards of quality, integrity, and customer service.</p>
+                    </div>
+                    <div class="hover-content">
+                        <span class="number">02</span>
+                        <div class="line"></div>
+                    </div>
                 </div>
-                <h3 class="title-arabic mb-3">TRTAQ</h3>
-                  <p class="text-muted">DESCRIPTION OF THE PRODUCT HERE. YOU CAN ADD DETAILS ABOUT THE PRODUCT AND ITS FEATURES.</p>
-                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark px-4">
-                    VIEW DETAILS
-                </a>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <style>
-    .feature-card {
-        padding: 2rem;
-        transition: transform 0.3s ease;
+    .vision-mission {
+        padding: 100px 0;
+        background-color: #f8f9fa;
     }
 
-    .feature-card:hover {
-        transform: translateY(-5px);
+    .section-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
     }
 
-    .image-wrapper {
-        width: 200px;
-        height: 200px;
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 3px;
+        background: #000;
+    }
+
+    .content-card {
+        position: relative;
+        background: #fff;
+        padding: 40px;
+        border-radius: 20px;
         overflow: hidden;
+        transition: all 0.5s ease;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .image-wrapper img {
+    .content-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
+        background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.02) 100%);
+        z-index: 1;
     }
 
-    .feature-card:hover .image-wrapper img {
-        transform: scale(1.05);
+    .card-content {
+        position: relative;
+        z-index: 2;
     }
 
-    .title-arabic {
-        font-family: 'Noto Naskh Arabic', serif;
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+        background: #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        transition: all 0.5s ease;
+    }
+
+    .icon-circle i {
+        font-size: 30px;
+        color: #fff;
+    }
+
+    .content-card h3 {
+        font-size: 28px;
         font-weight: 700;
-        color: #333;
-    }
-
-    .btn-outline-dark {
-        border-width: 2px;
-        font-weight: 500;
+        margin-bottom: 20px;
         transition: all 0.3s ease;
     }
 
-    .btn-outline-dark:hover {
-        background-color: #333;
-        color: white;
-        transform: translateY(-2px);
+    .content-card p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+        margin: 0;
     }
 
-    /* تحسينات للموبايل */
-    @media (max-width: 767.98px) {
-        .image-wrapper {
-            width: 150px;
-            height: 150px;
+    .hover-content {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        z-index: 2;
+    }
+
+    .number {
+        font-size: 48px;
+        font-weight: 700;
+        color: rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .line {
+        width: 0;
+        height: 3px;
+        background: #000;
+        transition: all 0.5s ease;
+        margin-top: 10px;
+    }
+
+    /* Hover Effects */
+    .content-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .content-card:hover .icon-circle {
+        transform: scale(1.1);
+    }
+
+    .content-card:hover .line {
+        width: 100%;
+    }
+
+    .content-card:hover .number {
+        color: rgba(0,0,0,0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2.5rem;
         }
 
-        .feature-card {
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+        .content-card {
+            padding: 30px;
+            min-height: 250px;
         }
-    }
 
-    /* تنسيق زر السلايدر */
-    .carousel-caption .btn-primary {
-        background-color: #ffffff;  /* خلفية بيضاء */
-        border-color: #ffffff;      /* حدود بيضاء */
-        color: #000000;             /* نص أسود */
-        padding: 10px 25px;         
-        transition: all 0.3s ease;   
-    }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+        }
 
-    /* تأثير التحويم على الزر */
-    .carousel-caption .btn-primary:hover {
-        background-color: transparent;  /* خلفية شفافة */
-        border-color: #ffffff;          /* حدود بيضاء */
-        color: #ffffff;                 /* نص أبيض */
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(255,255,255,0.2);
-    }
+        .icon-circle i {
+            font-size: 24px;
+        }
 
-    /* عند الضغط على الزر */
-    .carousel-caption .btn-primary:active {
-        transform: translateY(-1px);
+        .content-card h3 {
+            font-size: 24px;
+        }
+
+        .number {
+            font-size: 36px;
+        }
     }
 </style>
 
-  <!-- FOOTER -->
+<!-- Our Services Section -->
+<section class="our-services">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Our Services</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Service 1 -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-gear"></i> <!-- أيقونة الترس -->
+                    </div>
+                    <h3>Service One</h3>
+                    <p>We provide high-quality service one to meet your needs and exceed your expectations.</p>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-lightning"></i> <!-- أيقونة البرق -->
+                    </div>
+                    <h3>Service Two</h3>
+                    <p>Our service two is designed to deliver fast and reliable results for your business.</p>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-people"></i> <!-- أيقونة الأشخاص -->
+                    </div>
+                    <h3>Service Three</h3>
+                    <p>Experience exceptional customer support with our dedicated service three team.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .our-services {
+        padding: 100px 0;
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 3px;
+        background: #000;
+    }
+
+    .service-card {
+        position: relative;
+        background: #fff;
+        padding: 40px;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.02) 100%);
+        z-index: 1;
+    }
+
+    .service-card .service-icon {
+        font-size: 48px;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .service-card p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+        margin: 0;
+    }
+
+    .hover-content {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        z-index: 2;
+    }
+
+    .number {
+        font-size: 48px;
+        font-weight: 700;
+        color: rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .line {
+        width: 0;
+        height: 3px;
+        background: #000;
+        transition: all 0.5s ease;
+        margin-top: 10px;
+    }
+
+    /* Hover Effects */
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.1);
+    }
+
+    .service-card:hover .line {
+        width: 100%;
+    }
+
+    .service-card:hover .number {
+        color: rgba(0,0,0,0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .service-card {
+            padding: 30px;
+            min-height: 250px;
+        }
+
+        .service-card .service-icon {
+            font-size: 36px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+        }
+
+        .number {
+            font-size: 36px;
+        }
+    }
+</style>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+               
+            </div>
+        </div>
+        
+
+<!-- Our Team Section -->
+<section class="our-team">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+               <h2 class="section-title">founders</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Team Member 1 -->
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="path/to/image1.jpg" alt="Team Member 1" class="team-img">
+                    <h3>Abeed</h3>
+                    <p>CEO</p>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="path/to/image2.jpg" alt="Team Member 2" class="team-img">
+                    <h3>K.ELAHSHARY</h3>
+                    <p>CTO</p>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="col-md-4">
+                <div class="team-card">
+                    <img src="path/to/image3.jpg" alt="Team Member 3" class="team-img">
+                    <h3>Assem</h3>
+                    <p>COO</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .our-team {
+        padding: 100px 0;
+        background-color: #e9ecef;
+    }
+
+    .team-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .team-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .team-card p {
+        font-size: 16px;
+        color: #666;
+    }
+</style>
+
+<!-- FOOTER -->
   
 
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

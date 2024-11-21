@@ -8,8 +8,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Baskervville+SC&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
             
             :root {
                 --primary-color: #ffffff;
@@ -18,7 +23,7 @@
             }
             
             body {
-                font-family: 'Tajawal', sans-serif;
+                font-family: 'Inter', sans-serif;
                 background-color: #F0FFF0;
             }
             
@@ -36,10 +41,20 @@
             }
             
             .navbar-brand {
-                color: #333 !important;
-                font-size: 24px !important;
-                margin: 0 !important;
-                padding: 0 !important;
+                font-family: 'Aref Ruqaa', serif;
+                font-weight: 700;
+                font-size: 3.5rem !important;
+                color: #000000 !important;
+                text-decoration: none;
+                transition: color 0.3s ease;
+                margin: 0;
+                padding: 0;
+                line-height: 1;
+                letter-spacing: 2px;
+            }
+
+            .navbar-brand:hover {
+                opacity: 0.8;
             }
             
             .nav-icons {
@@ -69,9 +84,17 @@
             }
             
             .nav-link {
-                color: #333 !important;
+                font-family: 'Inter', sans-serif;
+                color: #666666 !important;
                 text-align: right;
                 padding: 10px 15px;
+                font-weight: 500;
+                letter-spacing: -0.3px;
+            }
+
+            .nav-link:hover {
+                color: #333333 !important;
+                transition: color 0.3s ease;
             }
             
             .search-bar {
@@ -96,7 +119,7 @@
             }
             
             .search-bar .btn:hover {
-                background-color: #2E8B57;
+                background-color: #ffffff;
                 color: white;
             }
             
@@ -324,7 +347,7 @@
             @media (max-width: 991px) {
                 .navbar-brand {
                     margin: 0 !important;
-                    font-size: 24px !important;
+                    font-size: 2.2rem !important;
                 }
 
                 .mobile-header {
@@ -351,6 +374,64 @@
                     text-align: right;
                 }
             }
+
+            .font-allura {
+                font-family: 'Allura', cursive;
+            }
+
+            /* تحديث خط العناوين */
+            h1, h2, h3, h4, h5, h6, .navbar-brand {
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+            }
+
+            /* تحديث خط البطاقات */
+            .card-title {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                letter-spacing: -0.5px;
+            }
+
+            .card-text {
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+            }
+
+            /* تحديث أسعار المنتجات */
+            .price {
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                letter-spacing: -0.3px;
+            }
+
+            /* للخط Oswald */
+            .oswald-heading {
+                font-family: "Oswald", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 500; /* يمكنك اختيار وزن من 200 إلى 700 */
+                font-style: normal;
+            }
+
+            /* للخط Baskervville SC */
+            .baskervville-sc-regular {
+                font-family: "Baskervville SC", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            /* للخط Aref Ruqaa */
+            .aref-ruqaa-regular {
+                font-family: "Aref Ruqaa", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .aref-ruqaa-bold {
+                font-family: "Aref Ruqaa", serif;
+                font-weight: 700;
+                font-style: normal;
+            }
         </style>
         @yield('styles')
     </head>
@@ -368,7 +449,7 @@
 
                     <!-- البراند في النص -->
                     <a class="navbar-brand" href="{{ route('shop.index') }}">
-                        TRYAQ
+                        <img src="{{ asset('images/WhatsApp Image 2024-11-08 at 20.55.57_4faa0618.jpg') }}" alt="تِــريَــاق" style="width: 150px; height:100px;">
                     </a>
 
                     <!-- أيقونات البحث والسلة -->
@@ -436,7 +517,7 @@
                     <div class="col-md-4">
                         <h5 style="color: black;">CONTACT US</h5>
                         <p style="color: black;"><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
-                        <p style="color: black;"><i class="fas fa-phone me-2"></i>01508092004</p>
+                        <p style="color: black;"><i class="fas fa-phone me-2"></i>01551900120</p>
                     </div>
                 </div>
                 <hr style="background-color: black;">
@@ -447,7 +528,7 @@
         </footer>
 
         <!-- WhatsApp Floating Icon -->
-        <a href="https://wa.me/201508092004" class="whatsapp-float" target="_blank">
+        <a href="https://wa.me/01551900120" class="whatsapp-float" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
 
@@ -467,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // إغلاق القوائم عند النقر خارجها
+    // إغلاق القوائم عند لنقر خارجها
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.navbar')) {
             searchBar.classList.remove('show');

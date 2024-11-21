@@ -10,14 +10,22 @@
             <div class="col">
                 <div class="card h-100">
                     <div class="card-img-wrapper">
+                        <!-- Description Badge (replacing sale badge) -->
+                        <div class="description-badge">{{ $product->description }}</div>
+                        
                         <a href="{{ route('shop.show', $product->id) }}">
-                            <img src="{{ asset('storage/' . $product->{'image-1'}) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ Storage::url($product['image-1']) }}" class="card-img-top" alt="{{ $product->name }}">
                         </a>
                     </div>
                     <div class="card-body text-center">
+                        <!-- Product Name -->
                         <h5 class="card-title product-name">{{ $product->name }}</h5>
+                        
+                        <!-- Current Price -->
                         <p class="card-text fw-bold">{{ number_format($product->price, 2) }}L.E</p>
-                        <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }}L.E</p>
+                        
+                        <!-- Original Price -->
+                        <p class="card-text discounted-price">{{ number_format($product['discount_price'], 2) }}L.E</p>
                     </div>
                 </div>
             </div>
@@ -106,20 +114,35 @@
 
     .card-img-wrapper {
         position: relative;
+        overflow: hidden;
     }
 
-    .sale-badge {
+    .description-badge {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: #e41e31;
-        color: white;
-        padding: 5px 10px;
-        font-size: 0.9rem;
-        font-weight: bold;
-        border-radius: 4px;
-        z-index: 10;
-        transform: rotate(-5deg);
+        top: 20px;
+        left: -60px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #000;
+        width: 200px;
+        padding: 5px 0;
+        text-align: center;
+        transform: rotate(-45deg);
+        transform-origin: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        animation: fadeInRotateLeft 0.5s ease-out;
+    }
+
+    @keyframes fadeInRotateLeft {
+        from {
+            opacity: 0;
+            transform: rotate(-45deg) translateY(-100px);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(-45deg) translateY(0);
+        }
     }
 
     .card-body {
@@ -132,8 +155,25 @@
     }
 
     .card-text {
+        background-color: #000;
+        color: #fff;
+        padding: 8px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+
+    .card-text.fw-bold,
+    .card-text.discounted-price {
+        background-color: transparent;
         color: #000;
-        margin-bottom: 0.25rem;
+    }
+
+    .p.card-text:not(.fw-bold):not(.discounted-price) {
+        background-color: #000;
+        color: #fff;
+        padding: 8px;
+        border-radius: 5px;
+        margin: 10px 0;
     }
 
     .original-price {
@@ -144,7 +184,7 @@
        font-weight: bold;
        margin-bottom: 0.5rem;
        display: inline-block;
-       border-bottom: 3px solid #000000;
+       border-bottom: 1px solid #999999;
        padding-bottom: 2px;
    }
 
@@ -154,6 +194,18 @@
         justify-content: space-between !important;
         align-items: center !important;
         width: 100% !important;
+    }
+
+    .description-text {
+        background-color: #000;
+        color: #fff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        margin: 5px auto 15px;  /* تعديل الهوامش */
+        display: inline-block;
+        font-size: 0.9rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        max-width: 80%;
     }
 </style>
 @endsection

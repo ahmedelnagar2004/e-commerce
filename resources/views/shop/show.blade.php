@@ -4,6 +4,9 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Baskervville+SC&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 <style>
     body {
         background-color: #fafafa;
@@ -100,9 +103,11 @@
     }
 
     h1 {
-        border-bottom: 3px solid #333;
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
         display: inline-block;
-        padding-bottom: 5px;
+        border-bottom: 1px solid #999999;
+        padding-bottom: 2px;
     }
 
     .product-description {
@@ -114,6 +119,78 @@
         color: #333;
         font-size: 1.5rem;
         font-weight: bold;
+    }
+
+    /* للخط Oswald */
+    .oswald-heading {
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500; /* يمكنك اختيار وزن من 200 إلى 700 */
+        font-style: normal;
+    }
+
+    /* للخط Baskervville SC */
+    .baskervville-sc-regular {
+        font-family: "Baskervville SC", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* للخط Aref Ruqaa */
+    .aref-ruqaa-regular {
+        font-family: "Aref Ruqaa", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .aref-ruqaa-bold {
+        font-family: "Aref Ruqaa", serif;
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    .sale-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(45deg, #ff4444, #ff0000);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        z-index: 10;
+        transform: rotate(-5deg);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: rotate(-5deg) scale(1);
+        }
+        50% {
+            transform: rotate(-5deg) scale(1.05);
+        }
+        100% {
+            transform: rotate(-5deg) scale(1);
+        }
+    }
+
+    .sale-badge::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+        border-radius: 30px;
     }
 </style>
 @endsection
@@ -130,10 +207,6 @@
                                 <div class="swiper-slide">
                                     <img src="{{ asset('storage/' . $product->{'image-'.$i}) }}" alt="{{ $product->name }} - صورة {{ $i }}">
                                 </div>
-                            @else
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" alt="{{ $product->name }} - صورة {{ $i }}">
-                                </div>
                             @endif
                         @endfor
                     </div>
@@ -144,7 +217,7 @@
             </div>
             <div class="col-md-6">
                <b> <h1 class="mb-4">{{ $product->name }}</h1></b>
-                <b><p class="mb-4">{{ $product->description }}</p></b></b>
+                
 
                     <p class="fw-bold fs-4 mb-4">Price: {{ number_format($product->price, 2) }} L.E</p> 
                     <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} L.E</p>
@@ -155,10 +228,14 @@
                     <div class="mb-4">
                         <label class="form-label fw-bold">Size:</label>
                         <div>
-                            @foreach($product->sizes as $size)
+                            @if ($product->sizes->count() > 0)
+                                 @foreach($product->sizes as $size)
                                 <input type="radio" name="size" id="size{{ $size->id }}" value="{{ $size->id }}" class="d-none" required>
                                 <label for="size{{ $size->id }}" class="size-btn">{{ $size->size }}</label>
                             @endforeach
+                            @else
+                            <p> <b>SOLD OUT</b></p>
+                            @endif
                         </div>
                     </div>
                     

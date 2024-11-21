@@ -67,6 +67,18 @@
                                 <input type="file" class="form-control" name="image-5" id="image-5" accept="image/*">
                             </div>
                             <div class="mb-3">
+                                <label for="image-6" class="form-label">الصورة السادسة</label>
+                                <input type="file" class="form-control" name="image-6" id="image-6" accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="image-7" class="form-label">الصورة السابعة</label>
+                                <input type="file" class="form-control" name="image-7" id="image-7" accept="image/*">
+                            </div>
+                            <div class="mb-3">
+                                <label for="image-8" class="form-label">الصورة الثامنة</label>
+                                <input type="file" class="form-control" name="image-8" id="image-8" accept="image/*">
+                            </div>
+                            <div class="mb-3">
                                 <label for="price" class="form-label">السعر</label>
                                 <div class="input-group">
                                     <span class="input-group-text">ج.م</span>

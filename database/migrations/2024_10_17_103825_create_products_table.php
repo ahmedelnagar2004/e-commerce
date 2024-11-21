@@ -18,11 +18,14 @@ return new class extends Migration
             $table->integer('discount_price');
             $table->integer('stock');
             $table->text('description');
-            $table->string('image-1');
-            $table->string('image-2');
-            $table->string('image-3');
-            $table->string('image-4');
-            $table->string('image-5');
+            $table->string('image-1')->nullable();
+            $table->string('image-2')->nullable();
+            $table->string('image-3')->nullable();
+            $table->string('image-4')->nullable();
+            $table->string('image-5')->nullable();
+            $table->string('image-6')->nullable();
+            $table->string('image-7')->nullable();
+            $table->string('image-8')->nullable();
             $table->timestamps();
         });
     }

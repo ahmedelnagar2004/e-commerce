@@ -23,6 +23,9 @@ class Product extends Model
         'image-3',
         'image-4',
         'image-5',
+        'image-6',
+        'image-7',
+        'image-8',
     ];
 
     public function sizes()
