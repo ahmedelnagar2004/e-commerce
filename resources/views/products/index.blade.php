@@ -11,9 +11,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
         
         :root {
-            --primary-color: #2E8B57;
-            --secondary-color: #98FB98;
-            --accent-color: #006400;
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #000000;
         }
         
         body {
@@ -22,13 +22,38 @@
         }
         
         .navbar {
-            background-color: var(--primary-color);
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            width: 100%;
         }
         
         .navbar-brand {
             font-size: 2.5rem;
             font-weight: bold;
             color: white !important;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            color: black !important;
+        }
+        
+        .btn-outline-dark {
+            padding: 8px 15px;
+            font-size: 14px;
+            border: 1.5px solid #333;
+            border-radius: 4px;
+            color: #333;
+            background: white;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-outline-dark:hover {
+            background-color: #333;
+            color: white;
         }
         
         .nav-link {
@@ -58,38 +83,91 @@
         }
         
         .footer {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: #F0FFF0;
+            color: rgb(0, 0, 0);
         }
         
         .footer a {
             color: var(--secondary-color) !important;
         }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            text-align: center;
+            flex: 1;
+        }
+
+        .logo-image {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-button {
+            flex: 0 0 200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: row;
+                padding: 10px;
+            }
+            
+            .nav-button {
+                flex: 0 0 auto;
+            }
+            
+            .btn-outline-dark {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .logo-image {
+                width: 80px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-leaf me-2"></i>ترياق
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a href="{{ route('products.create') }}" class="btn btn-success">
-                            <i class="fas fa-plus"></i> إضافة منتج جديد
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('admin.orders.index') }}" class="btn btn-primary">
-                            <i class="fas fa-shopping-cart"></i> الطلبات
-                        </a>
-                    </li>
-                </ul>
+            <div class="nav-wrapper">
+                <!-- زر إضافة منتج -->
+                <div class="nav-button right-button">
+                    <a href="{{ route('products.create') }}" class="btn btn-outline-dark">
+                        <i class="fas fa-plus me-2"></i>
+                        <span>إضافة منتج جديد</span>
+                    </a>
+                </div>
+
+                <!-- اللوجو -->
+                <div class="logo-container">
+                    <a class="navbar-brand" href="{{ route('shop.index') }}">
+                        <img src="{{ asset('images/WhatsApp Image 2024-11-08 at 20.55.57_4faa0618.jpg') }}" 
+                             alt="Teryaq Logo" 
+                             class="logo-image">
+                    </a>
+                </div>
+
+                <!-- زر الطلبات -->
+                <div class="nav-button left-button">
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-dark">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        <span>��لطلبات</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -138,30 +216,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5><i class="fas fa-leaf me-2"></i>ترياق</h5>
-                    <p>نقدم أفضل المنتجات الطبيعية والعشبية لصحتك ورفاهيتك.</p>
+                    <h5>Teryaq</h5>
+                    <p>We provide the best natural and herbal products for your health and  </p>
                 </div>
                 <div class="col-md-4">
-                    <h5>روابط سريعة</h5>
+                    <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">الرئيسية</a></li>
-                        <li><a href="#">المنتجات</a></li>
-                        <li><a href="#">من نحن</a></li>
-                        <li><a href="#">اتصل بنا</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5>تواصل معنا</h5>
+                    <h5>Contact Us</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-phone me-2"></i>123-456-7890</li>
                         <li><i class="fas fa-envelope me-2"></i>info@teryaq.com</li>
-                        <li><i class="fas fa-map-marker-alt me-2"></i>القاهرة، مصر</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Cairo, Egypt</li>
                     </ul>
                 </div>
             </div>
             <hr class="mt-4 bg-light">
             <div class="text-center mt-3">
-                <p>&copy; 2023 ترياق. جميع الحقوق محفوظة.</p>
+                <p>&copy; 2023 Teryaq. All rights reserved.</p>
             </div>
         </div>
     </footer>

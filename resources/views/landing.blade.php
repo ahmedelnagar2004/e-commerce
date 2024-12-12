@@ -65,9 +65,9 @@
             }
         }
 
-        .custom-btn, .animated-btn {
-            background-color: white;
-            color: black;
+        .custom-btn {
+            background-color: transparent;
+            color: white;
             padding: 10px 25px;
             border-radius: 5px;
             text-decoration: none;
@@ -77,9 +77,10 @@
             margin-top: 20px;
         }
 
-        .custom-btn:hover, .animated-btn:hover {
-            background-color: transparent;
-            color: white;
+        .custom-btn:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid white;
         }
 
         .carousel-caption {
@@ -211,7 +212,7 @@
 
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 1">
+            <img src="{{ asset('images/IMG_9443.JPG') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 1">
             <div class="container">
                 <div class="carousel-caption">
                   
@@ -220,7 +221,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 2">
+            <img src="{{ asset('images/IMG_9447.JPG') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 2">
             <div class="container">
                 <div class="carousel-caption">
                    
@@ -229,7 +230,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 3">
+            <img src="{{ asset('images/IMG_9448.JPG') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 3">
             <div class="container">
                 <div class="carousel-caption">
                   
@@ -238,7 +239,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 4">
+            <img src="{{ asset('images/IMG_9450.JPG') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 4">
             <div class="container">
                 <div class="carousel-caption">
                     
@@ -247,7 +248,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('images/WhatsApp Image 2024-10-28 at 15.34.12_a27eedb8.jpg') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 5">
+            <img src="{{ asset('images/IMG_9473.JPG') }}" class="bd-placeholder-img w-100" style="object-fit: cover; height: 100vh;" alt="Slide 5">
             <div class="container">
                 <div class="carousel-caption">
                   
@@ -269,28 +270,7 @@
   </div>
 
 <!-- شريط الأخبار المتحرك -->
-<div class="news-ticker">
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
-            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
-            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
-            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
-            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
-            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
-            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
-            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
-            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
-            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
-            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
-            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
-            <div class="ticker-item">🔥DISCOUNT 20% ON ALL NEW PRODUCTS</div>
-            <div class="ticker-item">🚚 FREE SHIPPING ON ORDERS OVER 500 SAR</div>
-            <div class="ticker-item">⚡ EXCLUSIVE OFFERS FOR MEMBERS</div>
-            <div class="ticker-item">📦 NEW COLLECTION ARRIVALS</div>
-        </div>
-    </div>
-</div>
+
 
 <style>
     .news-ticker {
@@ -324,52 +304,27 @@
 </style>
 
 <!-- Vision & Mission Section -->
-<section class="vision-mission">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center mb-5">
-                <h2 class="section-title">Vision & Mission</h2>
-            </div>
-        </div>
-        
-        <div class="row g-4">
-            <!-- Vision Card -->
-            <div class="col-md-6">
-                <div class="content-card vision">
-                    <div class="card-content">
-                        <span class="icon-circle">
-                            <i class="bi bi-eye"></i>
-                        </span>
-                        <h3>Our Vision</h3>
-                        <p> redefine fashion by creating timeless, sustainable, and inclusive clothing that empowers individuals to express their authentic selves. We aim to blend style with purpose, ensuring every piece we design is crafted with care for both the planet and its people.</p>
-                    </div>
-                    <div class="hover-content">
-                        <span class="number">01</span>
-                        <div class="line"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mission Card -->
-            <div class="col-md-6">
-                <div class="content-card mission">
-                    <div class="card-content">
-                        <span class="icon-circle">
-                            <i class="bi bi-flag"></i>
-                        </span>
-                        <h3>Our Mission</h3>
-                        <p>To provide exceptional products and services that enhance our customers' lives while 
-                        maintaining the highest standards of quality, integrity, and customer service.</p>
-                    </div>
-                    <div class="hover-content">
-                        <span class="number">02</span>
-                        <div class="line"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="who-is-tryaq">
+    <h2>WHO IS TERYAQ </h2>
+    <p>A quiet yet powerful presence that bridges the gap between the past and the present. Teryaq is more than a name; it is an echo of ancient wisdom, drawn from a word that means "cure." It speaks to the heart of our vission: to offer not just clothes, but a sense of renewal, a return to comfort, and a canvas for personal expression.</p>
 </section>
+
+<style>
+    .who-is-tryaq {
+        padding: 50px 20px;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .who-is-tryaq h2 {
+        margin-bottom: 20px;
+    }
+
+    .who-is-tryaq p {
+        line-height: 1.6;
+    }
+</style>
 
 <style>
     .vision-mission {
@@ -393,7 +348,7 @@
         transform: translateX(-50%);
         width: 70%;
         height: 3px;
-        background: #000;
+        background: #000000;
     }
 
     .content-card {
@@ -527,234 +482,137 @@
 </style>
 
 <!-- Our Services Section -->
-<section class="our-services">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center mb-5">
-                <h2 class="section-title">Our Services</h2>
-            </div>
-        </div>
-        
-        <div class="row g-4">
-            <!-- Service 1 -->
-            <div class="col-md-4">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="bi bi-gear"></i> <!-- أيقونة الترس -->
-                    </div>
-                    <h3>Service One</h3>
-                    <p>We provide high-quality service one to meet your needs and exceed your expectations.</p>
-                </div>
-            </div>
 
-            <!-- Service 2 -->
-            <div class="col-md-4">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="bi bi-lightning"></i> <!-- أيقونة البرق -->
-                    </div>
-                    <h3>Service Two</h3>
-                    <p>Our service two is designed to deliver fast and reliable results for your business.</p>
-                </div>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="col-md-4">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="bi bi-people"></i> <!-- أيقونة الأشخاص -->
-                    </div>
-                    <h3>Service Three</h3>
-                    <p>Experience exceptional customer support with our dedicated service three team.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <style>
     .our-services {
         padding: 100px 0;
-        background-color: #f8f9fa;
-    }
-
-    .section-title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
         position: relative;
-        display: inline-block;
+        overflow: hidden;
+        background: #000000;
+        color: #ffffff;
     }
 
-    .section-title::after {
+    .animated-background::before {
         content: '';
         position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 70%;
-        height: 3px;
-        background: #000;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        z-index: 0;
+        background: linear-gradient(
+            45deg,
+            rgba(50, 50, 50, 0.1) 0%,
+            rgba(70, 70, 70, 0.2) 30%,
+            rgba(90, 90, 90, 0.3) 40%,
+            rgba(50, 50, 50, 0.1) 50%,
+            rgba(70, 70, 70, 0.2) 60%,
+            rgba(90, 90, 90, 0.3) 70%,
+            rgba(50, 50, 50, 0.1) 100%
+        );
+        animation: backgroundAnimation 15s linear infinite;
+        transform-origin: center center;
+    }
+
+    .animated-background::after {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        z-index: 0;
+        background: linear-gradient(
+            -45deg,
+            rgba(40, 40, 40, 0.1) 0%,
+            rgba(60, 60, 60, 0.2) 30%,
+            rgba(80, 80, 80, 0.3) 40%,
+            rgba(40, 40, 40, 0.1) 50%,
+            rgba(60, 60, 60, 0.2) 60%,
+            rgba(80, 80, 80, 0.3) 70%,
+            rgba(40, 40, 40, 0.1) 100%
+        );
+        animation: backgroundAnimation2 20s linear infinite;
+        transform-origin: center center;
     }
 
     .service-card {
         position: relative;
-        background: #fff;
+        z-index: 1;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 40px;
         border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        min-height: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.02) 100%);
-        z-index: 1;
-    }
-
-    .service-card .service-icon {
-        font-size: 48px;
-        color: #000;
-        margin-bottom: 20px;
-    }
-
-    .service-card h3 {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .service-card p {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #666;
-        margin: 0;
-    }
-
-    .hover-content {
-        position: absolute;
-        bottom: 40px;
-        right: 40px;
-        z-index: 2;
-    }
-
-    .number {
-        font-size: 48px;
-        font-weight: 700;
-        color: rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-
-    .line {
-        width: 0;
-        height: 3px;
-        background: #000;
-        transition: all 0.5s ease;
-        margin-top: 10px;
-    }
-
-    /* Hover Effects */
     .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        background: #f8f8f8;
+    }
+
+    .service-icon {
+        width: 70px;
+        height: 70px;
+        background: #333333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        transition: all 0.5s ease;
+    }
+
+    .service-icon i {
+        font-size: 30px;
+        color: #ffffff;
     }
 
     .service-card:hover .service-icon {
-        transform: scale(1.1);
+        background: #444444;
+        transform: scale(1.1) rotate(5deg);
     }
 
-    .service-card:hover .line {
-        width: 100%;
+    .service-card h3 {
+        color: #000000;
+        margin-bottom: 15px;
     }
 
-    .service-card:hover .number {
-        color: rgba(0,0,0,0.2);
+    .service-card p {
+        color: #333333;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-        .section-title {
-            font-size: 2.5rem;
-        }
+    .section-title {
+        color: #ffffff;
+    }
 
-        .service-card {
-            padding: 30px;
-            min-height: 250px;
+    @keyframes backgroundAnimation {
+        0% {
+            transform: rotate(0deg);
         }
-
-        .service-card .service-icon {
-            font-size: 36px;
+        100% {
+            transform: rotate(360deg);
         }
+    }
 
-        .service-card h3 {
-            font-size: 24px;
+    @keyframes backgroundAnimation2 {
+        0% {
+            transform: rotate(0deg);
         }
-
-        .number {
-            font-size: 36px;
+        100% {
+            transform: rotate(-360deg);
         }
     }
 </style>
 
 <!-- Testimonials Section -->
-<section class="testimonials">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center mb-5">
-               
-            </div>
-        </div>
+
         
 
 <!-- Our Team Section -->
-<section class="our-team">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center mb-5">
-               <h2 class="section-title">founders</h2>
-            </div>
-        </div>
-        
-        <div class="row g-4">
-            <!-- Team Member 1 -->
-            <div class="col-md-4">
-                <div class="team-card">
-                    <img src="path/to/image1.jpg" alt="Team Member 1" class="team-img">
-                    <h3>Abeed</h3>
-                    <p>CEO</p>
-                </div>
-            </div>
-
-            <!-- Team Member 2 -->
-            <div class="col-md-4">
-                <div class="team-card">
-                    <img src="path/to/image2.jpg" alt="Team Member 2" class="team-img">
-                    <h3>K.ELAHSHARY</h3>
-                    <p>CTO</p>
-                </div>
-            </div>
-
-            <!-- Team Member 3 -->
-            <div class="col-md-4">
-                <div class="team-card">
-                    <img src="path/to/image3.jpg" alt="Team Member 3" class="team-img">
-                    <h3>Assem</h3>
-                    <p>COO</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <style>
     .our-team {

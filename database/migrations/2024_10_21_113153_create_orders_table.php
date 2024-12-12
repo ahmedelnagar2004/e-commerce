@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('address');
             $table->json('items');
             $table->decimal('total_amount', 10, 2);
+            $table->string('instagram_username');
             $table->timestamps();
         });
     }

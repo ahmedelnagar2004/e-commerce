@@ -6,6 +6,9 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4"> COLLECTION</h1>
     <div class="row row-cols-2 row-cols-md-3 g-4">
+        @if ($products->count() > 0)
+            
+       
         @foreach ($products as $product)
             <div class="col">
                 <div class="card h-100">
@@ -30,6 +33,15 @@
                 </div>
             </div>
         @endforeach
+        @else
+        <div class="col" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+            <div class="card h-100" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div class="card-body text-center" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                    <h5 class="card-title" style="text-align: center;">NO PRODUCTS FOUND</h5>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
@@ -121,8 +133,8 @@
         position: absolute;
         top: 20px;
         left: -60px;
-        background: rgba(255, 255, 255, 0.9);
-        color: #000;
+        background: rgba(0, 0, 0, 0.9);
+        color: #ffffff;
         width: 200px;
         padding: 5px 0;
         text-align: center;

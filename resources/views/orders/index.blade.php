@@ -2,21 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">الطلبات</h1>
+    <h1 class="mb-4" style="text-align: center;">Orders</h1>
     
     @if($orders->count() > 0)
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>رقم الطلب</th>
-                    <th>اسم العميل</th>
-                    <th>البريد الإلكتروني</th>
-                    <th>رقم الهاتف</th>
-                    <th>العنوان</th>
-                    <th>إجمالي المبلغ</th>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Instagram Username</th>
+                    <th>Total Amount</th>
+                    <th>Order Date</th>
+                    <th>Details</th>
                     
-                    <th>التفاصيل</th>
-                    <th>حذف الطلب</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,26 +28,12 @@
                     <td data-label="البريد الإلكتروني">{{ $order->email }}</td>
                     <td data-label="رقم الهاتف">{{ $order->phone }}</td>
                     <td data-label="العنوان">{{ $order->address }}</td>
+                    <td data-label="إسم المستخدم في الانستقرام">{{ $order->instagram_username }}</td>
                     <td data-label="إجمالي المبلغ">{{ number_format($order->total_amount, 2) }} ج.م</td>
-                    <td data-label="الحالة">
-                        <span class="status-icon" id="status-icon-{{ $order->id }}">
-                            @if($order->status == 'pending')
-                                <i class="fas fa-clock text-warning"></i>
-                            @elseif($order->status == 'processing')
-                                <i class="fas fa-cog text-primary fa-spin"></i>
-                            @elseif($order->status == 'shipped')
-                                <i class="fas fa-truck text-info"></i>
-                            @elseif($order->status == 'delivered')
-                                <i class="fas fa-check-circle text-success"></i>
-                            @elseif($order->status == 'cancelled')
-                                <i class="fas fa-times-circle text-danger"></i>
-                            @endif
-                        </span>
-                        <span id="status-text-{{ $order->id }}">{{ ucfirst($order->status) }}</span>
-                    </td>
+                    <td data-label="تاريخ الطلب">{{ $order->created_at->format('Y-m-d') }}</td>
                     <td data-label="التفاصيل">
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{ $order->id }}">
-                            عرض التفاصيل
+                            View Details
                         </button>
                     </td>
                 </tr>
@@ -68,12 +55,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>الصورة</th>
-                                    <th>اسم المنتج</th>
-                                    <th>الكمية</th>
-                                    <th>السعر</th>
-                                    <th>المقاس</th>
-                                    <th>الإجمالي</th>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Size</th>
+                                    <th> Total Price WITHOUT SHIPPING</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,10 +79,11 @@
                                     <td>{{ $item['size'] ?? 'غير محدد' }}</td>
                                     <td>{{ number_format($item['price'] * $item['quantity'], 2) }} ج.م</td>
                                 </tr>
+                                
                                 @endforeach
                             </tbody>
                         </table>
-                        <p><strong>الإجمالي الكلي: {{ number_format($order->total_amount, 2) }} ج.م</strong></p>
+                        <p><strong>Total Price WITHOUT SHIPPING: {{ number_format($order->total_amount, 2) }} ج.م</strong></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
@@ -206,62 +194,128 @@ $(document).ready(function() {
 
 @section('styles')
 <style>
-    /* التنسيق العام للجدول */
+    /* تنسيق الجدول */
     .table {
         width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
         margin-bottom: 1rem;
+        background-color: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
     }
 
-    /* تنسيقات خاصة بالموبايل */
+    /* تنسيق رأس الجدول */
+    .table thead th {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+        padding: 15px;
+        font-weight: 600;
+        text-align: center;
+        color: #333;
+    }
+
+    /* تنسيق خلايا الجدول */
+    .table td {
+        border-bottom: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+        padding: 15px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* إزالة الحدود اليمنى للعمود الأخير */
+    .table th:last-child,
+    .table td:last-child {
+        border-right: none;
+    }
+
+    /* تنسيق الصفوف عند المرور عليها */
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* إزالة الحد السفلي للصف الأخير */
+    .table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* تنسيق الصور */
+    .table img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    /* تنسيق الأزرار */
+    .btn {
+        background-color: white !important;
+        color: #333 !important;
+        border: 2px solid #333 !important;
+        border-radius: 25px !important;
+        padding: 8px 20px !important;
+        transition: all 0.3s ease !important;
+        font-weight: 500 !important;
+    }
+
+    .btn:hover {
+        background-color: #333 !important;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* تنسيق خاص لأزرار الجدول */
+    .table .btn {
+        padding: 5px 15px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* تنسيق زر الإغلاق في المودال */
+    .modal .btn-secondary {
+        background-color: white !important;
+        color: #333 !important;
+        border: 2px solid #333 !important;
+    }
+
+    .modal .btn-secondary:hover {
+        background-color: #333 !important;
+        color: white !important;
+    }
+
+    /* تنسيقات خاصة للموبايل */
     @media screen and (max-width: 768px) {
-        /* إخفاء رؤوس الجدول على الموبايل */
         .table thead {
             display: none;
         }
 
-        /* تحويل صفوف الجدول إلى بطاقات */
-        .table tr {
+        .table tbody tr {
             display: block;
-            margin-bottom: 1rem;
             border: 1px solid #dee2e6;
+            margin-bottom: 1rem;
             border-radius: 8px;
-            padding: 1rem;
-            background: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .table td {
             display: block;
             text-align: right;
-            padding: 0.5rem 0;
-            border: none;
+            padding: 10px;
+            border-right: none;
+            border-bottom: 1px solid #dee2e6;
         }
 
-        /* إضافة عنا��ين للبيانات */
         .table td:before {
             content: attr(data-label);
-            float: right;
+            float: left;
             font-weight: bold;
-            margin-left: 1rem;
+            color: #333;
         }
 
-        /* تنسيق الأزرار */
-        .btn-primary {
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-
-        /* تنسيق المودال */
-        .modal-dialog {
-            margin: 0.5rem;
-        }
-
-        /* تنسيق صور المنتجات */
-        .table img {
-            width: 80px;
-            height: 80px;
-            display: block;
-            margin: 0 auto;
+        .table td:last-child {
+            border-bottom: none;
         }
     }
 </style>

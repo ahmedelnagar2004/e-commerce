@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $fillable = [
         'name', 'email', 'phone', 'address',
-        'items', 'total_amount'
+        'items', 'total_amount','instagram_username'
     ];
 
     protected $casts = [

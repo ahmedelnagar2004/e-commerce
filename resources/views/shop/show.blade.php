@@ -192,6 +192,71 @@
         background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
         border-radius: 30px;
     }
+
+    /* Add these new styles */
+    .size-chart-btn {
+        background-color: #f8f9fa;
+        color: #333;
+        border: 1px solid #ddd;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .size-chart-btn:hover {
+        background-color: #333;
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .size-chart-btn i {
+        font-size: 0.8rem;
+    }
+
+    .size-chart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .size-chart-table th, .size-chart-table td {
+        border: 1px solid #eee;
+        padding: 12px;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .size-chart-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .size-chart-table tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+    }
+
+    .size-chart-modal .modal-header {
+        border-bottom: 2px solid #333;
+    }
+
+    .size-chart-modal .modal-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
+    }
 </style>
 @endsection
 
@@ -221,12 +286,13 @@
 
                     <p class="fw-bold fs-4 mb-4">Price: {{ number_format($product->price, 2) }} L.E</p> 
                     <p class="card-text discounted-price">{{ number_format($product->{'discount_price'}, 2) }} L.E</p>
-                <form action="{{ route('cart.add') }}" method="POST">
+                <form action="{{ route('cart.add') }}" method="POST" id="addToCartForm">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     
                     <div class="mb-4">
                         <label class="form-label fw-bold">Size:</label>
+                       
                         <div>
                             @if ($product->sizes->count() > 0)
                                  @foreach($product->sizes as $size)
@@ -251,9 +317,7 @@
     </div>
 </div>
 <div class="container mt-5">
-    <div class="product-container">
-        // ... المحتوى الموجود ...
-    </div>
+    
 
     <div class="shipping-policy">
         <h3><i class="fas fa-truck"></i> Shipping</h3>
@@ -291,5 +355,34 @@
             this.classList.add('active');
         });
     });
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('addToCartForm');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                console.log('Form submitted');
+                const sizeSelected = document.querySelector('input[name="size"]:checked');
+                if (!sizeSelected) {
+                    event.preventDefault();
+                    alert('من فضلك حدد المقاس');
+                }
+            });
+        } else {
+            console.error('Form not found');
+        }
+    });
 </script>
 @endsection
+
+<!-- Size Chart Modal -->
+<div class="modal fade size-chart-modal" id="sizeChartModal" tabindex="-1" aria-labelledby="sizeChartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sizeChartModalLabel">Size Chart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>

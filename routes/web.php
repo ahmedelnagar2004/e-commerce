@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\Admin\OrderStatusController as AdminOrderStatusController;
 use  App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/sizeshart', [HomeController::class, 'sizeshart'])->name('sizeshart');

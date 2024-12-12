@@ -5,17 +5,17 @@
 @section('content')
 <div class="size-chart-page">
     <div class="container">
-        <h1 class="text-center mb-5">جدول المقاسات</h1>
+        <h1 class="text-center mb-5">Size Chart</h1>
         
         <div class="size-chart-container">
-            <h2 class="mb-4">مقاسات الملابس للرجال</h2>
+            <h2 class="mb-4">Men's Size Chart</h2>
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>المقاس</th>
-                        <th>الصدر (سم)</th>
-                        <th>الخصر (سم)</th>
-                        <th>الورك (سم)</th>
+                        <th>Size</th>
+                        <th>Chest (cm)</th>
+                        <th>Waist (cm)</th>
+                        <th>Hip (cm)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,14 +52,14 @@
                 </tbody>
             </table>
 
-            <h2 class="mt-5 mb-4">مقاسات الملابس للنساء</h2>
+            <h2 class="mt-5 mb-4">Women's Size Chart</h2>
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>المقاس</th>
-                        <th>الصدر (سم)</th>
-                        <th>الخصر (سم)</th>
-                        <th>الورك (سم)</th>
+                        <th>Size</th>
+                        <th>Chest (cm)</th>
+                        <th>Waist (cm)</th>
+                        <th>Hip (cm)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,13 +98,13 @@
         </div>
 
         <div class="size-guide mt-5">
-            <h3>كيفية قياس مقاسك</h3>
+            <h3>How to Measure Your Size</h3>
             <ul>
-                <li><strong>الصدر:</strong> قم بقياس محيط الجزء الأكبر من صدرك.</li>
-                <li><strong>الخصر:</strong> قم بقياس محيط خصرك عند أضيق نقطة.</li>
-                <li><strong>الورك:</strong> قم بقياس محيط الجزء الأكبر من وركك.</li>
+                <li><strong>Chest:</strong> Measure the circumference of the largest part of your chest.</li>
+                <li><strong>Waist:</strong> Measure the circumference of your waist at the narrowest point.</li>
+                <li><strong>Hip:</strong> Measure the circumference of the largest part of your hips.</li>
             </ul>
-            <p>للحصول على أفضل نتيجة، استخدم شريط قياس واطلب المساعدة من شخص آخر للقياس.</p>
+            <p>For the best results, use a measuring tape and ask for help from someone else to measure.</p>
         </div>
     </div>
 </div>

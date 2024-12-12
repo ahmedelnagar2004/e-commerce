@@ -210,85 +210,36 @@
                 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             }
             
+            /* تنسيق أيقونة الواتساب */
             .whatsapp-float {
-                position: fixed !important;
-                bottom: 80px !important;
-                right: 30px !important;
-                z-index: 9999 !important;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: white;
+                color: #000;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                font-size: 24px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: #25D366;
-                color: white;
-                border-radius: 50%;
-                width: 70px;
-                height: 70px;
                 text-decoration: none;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
                 transition: all 0.3s ease;
+                z-index: 1000;
+                border: 2px solid #000;
             }
 
             .whatsapp-float:hover {
-                background-color: #128C7E;
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-                transform: translateY(-2px);
+                transform: scale(1.1);
+                color: white;
+                background-color: #000;
             }
 
             .whatsapp-float i {
-                font-size: 36px;
-            }
-
-            .whatsapp-float::after {
-                content: "";
-                position: absolute;
-                z-index: -1;
-                left: -5px;
-                right: -5px;
-                bottom: -5px;
-                top: -5px;
-                background-color: #25D366;
-                border-radius: 50%;
-                opacity: 0;
-                animation: pulse 2s infinite;
-            }
-
-            @keyframes pulse {
-                0% {
-                    transform: scale(0.95);
-                    opacity: 0.7;
-                }
-                70% {
-                    transform: scale(1.1);
-                    opacity: 0.2;
-                }
-                100% {
-                    transform: scale(0.95);
-                    opacity: 0.7;
-                }
-            }
-
-            @media (max-width: 767px) {
-                .whatsapp-float {
-                    width: 60px;
-                    height: 60px;
-                    bottom: 60px !important;
-                    right: 20px !important;
-                }
-                .whatsapp-float i {
-                    font-size: 30px;
-                }
-            }
-
-            /* تنسيق زر البحث */
-            .btn-outline-dark {
-                background-color: white !important;
-                border: 1px solid black !important;
-                color: black !important;
-            }
-
-            .btn-outline-dark:hover {
-                background-color: black !important;
-                color: white !important;
+                line-height: 50px;
             }
 
             /* إضافة هذه الأنماط إلى قسم الـ styles */
@@ -502,8 +453,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h5 style="color: black;"><i class="fas fa-leaf me-2"></i>TRYAQ STORE</h5>
-                        <p style="color: black;">We offer the best natural and herbal products for your health and well-being.</p>
+                        <h5 style="color: black;">TERYAQ STORE</h5>
+                        <p style="color: black;"></p>
                     </div>
                     <div class="col-md-4">
                         <h5 style="color: black;"> LINKS</h5>
@@ -516,7 +467,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5 style="color: black;">CONTACT US</h5>
-                        <p style="color: black;"><i class="fas fa-envelope me-2"></i>info@teryaq.com</p>
+                        <p style="color: black;"><i class="fas fa-envelope me-2"></i>teryaq.eg@gmail.com</p>
                         <p style="color: black;"><i class="fas fa-phone me-2"></i>01551900120</p>
                     </div>
                 </div>

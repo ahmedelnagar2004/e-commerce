@@ -15,8 +15,9 @@ class OrderController extends Controller
         try {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:20',
+                'email' => 'required|email',
+                'phone' => 'required|string',
+                'instagram_username' => 'nullable|string|max:255',
                 'address' => 'required|string',
             ]);
 
@@ -35,6 +36,7 @@ class OrderController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'phone' => $validatedData['phone'],
+                'instagram_username' => $validatedData['instagram_username'],
                 'address' => $validatedData['address'],
                 'items' => $cartItems,
                 'total_amount' => $totalAmount
