@@ -34,14 +34,18 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'discount_price' => 'required|numeric|min:0', // تم تغيير الشرطة
+            'discount_price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'required|string',
-            'image-1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-5' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-1' => 'required|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-4' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-5' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-6' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-7' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            'image-8' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:10240',
+            
             'sizes' => 'array',
         ]);
 
@@ -51,8 +55,32 @@ class ProductController extends Controller
         for ($i = 1; $i <= 5; $i++) {
             $imageField = "image-$i";
             if ($request->hasFile($imageField)) {
-                $imagePath = $request->file($imageField)->store('products', 'public');
-                $product->{$imageField} = $imagePath;
+                try {
+                    $file = $request->file($imageField);
+                    
+                    // التأكد من أن الملف صالح
+                    if ($file->isValid()) {
+                        // تنظيف اسم الملف وإنشاء اسم جديد
+                        $extension = $file->getClientOriginalExtension();
+                        $fileName = uniqid() . '.' . $extension;
+                        
+                        // محاولة حفظ الملف
+                        $imagePath = $file->move(public_path('storage/products'), $fileName);
+                        
+                        if ($imagePath) {
+                            $product->{$imageField} = 'products/' . $fileName;
+                        } else {
+                            \Log::error("Failed to store image: " . $imageField);
+                            return back()->with('error', 'فشل في رفع الصورة: ' . $imageField);
+                        }
+                    } else {
+                        \Log::error("Invalid file: " . $imageField);
+                        return back()->with('error', 'الملف غير صالح: ' . $imageField);
+                    }
+                } catch (\Exception $e) {
+                    \Log::error("Error uploading file: " . $e->getMessage());
+                    return back()->with('error', 'حدث خطأ أثناء رفع الصورة: ' . $imageField);
+                }
             }
         }
 
@@ -98,11 +126,14 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'description' => 'required',
             'stock' => 'required|integer|min:0',
-            'image-1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image-5' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image-1' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-2' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-3' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-4' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-5' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-6' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-7' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
+            'image-8' => 'nullable|image|mimes:jpeg,png,jpg,gif,JPEG,PNG,JPG,GIF|max:2048',
             'sizes' => 'array',
         ]);
 
@@ -117,7 +148,9 @@ class ProductController extends Controller
                 if ($product->{$imageField}) {
                     \Storage::disk('public')->delete($product->{$imageField});
                 }
-                $imagePath = $request->file($imageField)->store('products', 'public');
+                $file = $request->file($imageField);
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $imagePath = $file->storeAs('products', $fileName, 'public');
                 $product->{$imageField} = $imagePath;
             }
         }
